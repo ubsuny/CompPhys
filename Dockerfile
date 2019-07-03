@@ -1,9 +1,9 @@
-FROM ubuntu:16.04
+FROM ubuntu:19.10
 
 
 # Create a user that does not have root privileges
 # Set username...
-ARG username=phy410
+ARG username=compphys
 # ... with UID 1000
 ENV MY_UID 1000
 # ... and home directory /results (to be mounted on the host system)
@@ -14,16 +14,17 @@ RUN useradd --create-home --home-dir ${HOME} --uid ${MY_UID} ${username}
 # Set the working directory to /app
 WORKDIR /app
 
-# Copy the current directory contents into the container at /app
 ADD . /app
 
-ENV CPT_PATH=/app/cpt
-ENV PYTHONPATH=/app/cpt_python
-ENV PATH=/app/cpt:$PATH
+ENV CPT_PATH=/app/compphys
+ENV PYTHONPATH=/app/compphys_python
+ENV PATH=/app/compphys:$PATH
 RUN ./install_software.sh
 
 # Set the python path
-ENV PYTHONPATH /app/lib/python2.7/site-packages/:/app/lib/
+RUN ln -s /usr/bin/python3 /usr/bin/python
+
+#ENV PYTHONPATH /app/lib/python3.7/site-packages/:/app/lib/
 
 
 USER root
