@@ -8,10 +8,10 @@ def main() :
     p3 = p1 + p2
     p4 = p1 - p2
 
-    print p1
-    print p2
-    print p3
-    print p4
+    print(p1)
+    print(p2)
+    print(p3)
+    print(p4)
 
     points = []
     f = open("points.txt")
@@ -21,7 +21,7 @@ def main() :
         points.append(p)
 
     for point in points:
-        print point
+        print(point)
 
 
 
