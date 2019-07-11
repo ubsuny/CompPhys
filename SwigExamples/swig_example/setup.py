@@ -8,7 +8,7 @@ from distutils.core import setup, Extension
 
 
 example_module = Extension('_example',
-                           sources=['example_wrap.cxx', 'example.cpp'],
+                           sources=['swig_example/example_wrap.cxx', 'swig_example/example.cpp'],
                            extra_compile_args=["-std=c++11"],
                            )
 
