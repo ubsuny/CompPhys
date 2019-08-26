@@ -20,7 +20,7 @@ Model predicts.
 
 
 # data downloaded from http://earthquake.usgs.gov/earthquakes/search/
-print ' Earthquake data: Gutenberg-Richter Model'
+print (' Earthquake data: Gutenberg-Richter Model')
 
 magvalues = np.genfromtxt(fname='california_earthquakes_2010_to_2013.csv', usecols=(4),skip_header=1, delimiter=',')
 dN_values,edges = np.histogram(magvalues,bins=90)
@@ -38,9 +38,9 @@ plt.hist( magvalues, bins=90, range=[1.0,10.0], log=True, bottom=0.1,cumulative=
 plt.xlabel( 'Magnitude (M)' )
 plt.ylabel( 'N' )
 
-print ' least_squares fit to data:'
-print ' slope b = {0:6.3f} +- {1:6.3f}'.format( fit[1], fit[4])
-print ' intercept a = {0:6.3f} +- {1:6.3f}'.format( fit[0], fit[3])
-print ' log_10(N) error bar = {0:6.3f}'.format( fit[2] )
+print (' least_squares fit to data:')
+print (' slope b = {0:6.3f} +- {1:6.3f}'.format( fit[1], fit[4]))
+print (' intercept a = {0:6.3f} +- {1:6.3f}'.format( fit[0], fit[3]))
+print (' log_10(N) error bar = {0:6.3f}'.format( fit[2] ))
 
 plt.show()

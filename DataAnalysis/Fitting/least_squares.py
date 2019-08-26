@@ -20,7 +20,7 @@ def least_squares(x, y):
     n = len(x)   # number of galaxies
 
     if n <= 2 :
-        print 'Error! Need at least two data points!'
+        print ('Error! Need at least two data points!')
         exit()
 
     # Compute all of the stat. variables we need
@@ -30,7 +30,7 @@ def least_squares(x, y):
     s_xy = sum( x*y )
     denom = n * s_xx - s_x**2
     if abs( denom ) < 0.000001 : 
-        print 'Error! Denomominator is zero!'
+        print ('Error! Denomominator is zero!')
         exit()
 
     # Compute y-intercept and slope 

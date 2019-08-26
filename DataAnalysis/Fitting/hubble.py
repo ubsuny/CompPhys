@@ -19,7 +19,7 @@ def main():
     n = len(r)   # number of galaxies
 
     if n <= 2 :
-        print 'Error! Need at least two data points!'
+        print ('Error! Need at least two data points!')
         exit()
 
     # Compute all of the stat. variables we need
@@ -29,7 +29,7 @@ def main():
     s_xy = sum( r*v )
     denom = n * s_xx - s_x**2
     if abs( denom ) < 0.000001 : 
-        print 'Error! Denomominator is zero!'
+        print ('Error! Denomominator is zero!')
         exit()
 
     # Compute y-intercept and slope 
@@ -52,13 +52,13 @@ def main():
     p,cov = np.polyfit( r, v, 1, cov=True)
     
     # Print out results
-    print ' Least squares fit of', n, 'data points'
-    print ' -----------------------------------'
-    print " Hubble's constant slope   b = {0:6.2f} +- {1:6.2f}  km/s/Mpc".format( b, sigma_b)
-    print " Intercept with r axis     a = {0:6.2f} +- {1:6.2f}  km/s".format( a, sigma_a)
-    print ' Estimated v error bar sigma =', round(sigma, 1), 'km/s'
-    print " numpy's values:           b = {0:6.2f} +- {1:6.2f}  km/s/Mpc".format( p[0], np.sqrt(cov[0,0]))
-    print "                           a = {0:6.2f} +- {1:6.2f}  km/s/Mpc".format( p[1], np.sqrt(cov[1,1]))
+    print (' Least squares fit of', n, 'data points')
+    print (' -----------------------------------'
+    print (" Hubble's constant slope   b = {0:6.2f} +- {1:6.2f}  km/s/Mpc".format( b, sigma_b))
+    print (" Intercept with r axis     a = {0:6.2f} +- {1:6.2f}  km/s".format( a, sigma_a))
+    print (' Estimated v error bar sigma =', round(sigma, 1), 'km/s')
+    print (" numpy's values:           b = {0:6.2f} +- {1:6.2f}  km/s/Mpc".format( p[0], np.sqrt(cov[0,0])))
+    print ("                           a = {0:6.2f} +- {1:6.2f}  km/s/Mpc".format( p[1], np.sqrt(cov[1,1])))
 
 
     rvals = np.linspace(0., 2.0, 21)
