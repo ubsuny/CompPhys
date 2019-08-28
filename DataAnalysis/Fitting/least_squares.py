@@ -24,10 +24,10 @@ def least_squares(x, y):
         exit()
 
     # Compute all of the stat. variables we need
-    s_x = sum(x)
-    s_y = sum(y)
-    s_xx = sum( x**2 )
-    s_xy = sum( x*y )
+    s_x = np.sum(x)
+    s_y = np.sum(y)
+    s_xx = np.sum( x**2 )
+    s_xy = np.sum( x*y )
     denom = n * s_xx - s_x**2
     if abs( denom ) < 0.000001 : 
         print ('Error! Denomominator is zero!')
@@ -39,7 +39,7 @@ def least_squares(x, y):
 
     # Compute uncertainties
     if n > 2 : 
-          sigma = np.sqrt(sum((y - (a+b*x))**2 ) / (n-2))
+          sigma = np.sqrt(np.sum((y - (a+b*x))**2 ) / (n-2))
           sigma_a = np.sqrt(sigma**2 * s_xx / denom)
           sigma_b = np.sqrt(sigma**2 * n / denom)
     else :

@@ -2,6 +2,7 @@ import math
 import numpy as np
 import matplotlib.pyplot as plt
 
+from least_squares import least_squares
 
 
 def main():
@@ -22,38 +23,15 @@ def main():
         print ('Error! Need at least two data points!')
         exit()
 
-    # Compute all of the stat. variables we need
-    s_x = sum(r)
-    s_y = sum(v)
-    s_xx = sum( r**2 )
-    s_xy = sum( r*v )
-    denom = n * s_xx - s_x**2
-    if abs( denom ) < 0.000001 : 
-        print ('Error! Denomominator is zero!')
-        exit()
-
-    # Compute y-intercept and slope 
-    a = (s_xx * s_y - s_x * s_xy) / denom
-    b = (n*s_xy - s_x * s_y) / denom   
-
-    # Compute uncertainties
-    if n > 2 : 
-          sigma = np.sqrt(sum((v - (a+b*r))**2 ) / (n-2))
-          sigma_a = np.sqrt(sigma**2 * s_xx / denom)
-          sigma_b = np.sqrt(sigma**2 * n / denom)
-    else :
-          sigma = 0.
-          sigma_a = 0.
-          sigma_b = 0.
-
-
+    # Use our home-grown version
+    [a, b, sigma, sigma_a, sigma_b] = least_squares(r,v)
 
     # Check against numpy's version:
     p,cov = np.polyfit( r, v, 1, cov=True)
     
     # Print out results
     print (' Least squares fit of', n, 'data points')
-    print (' -----------------------------------'
+    print (' -----------------------------------')
     print (" Hubble's constant slope   b = {0:6.2f} +- {1:6.2f}  km/s/Mpc".format( b, sigma_b))
     print (" Intercept with r axis     a = {0:6.2f} +- {1:6.2f}  km/s".format( a, sigma_a))
     print (' Estimated v error bar sigma =', round(sigma, 1), 'km/s')

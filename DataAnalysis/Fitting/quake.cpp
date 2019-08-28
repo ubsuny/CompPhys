@@ -81,7 +81,7 @@ int main()
 
     // fit histogram to straight line
     double a, b, sigma, sigma_a, sigma_b;
-    least_squares_fit(M_values, log10N_values, a, b, sigma, sigma_a, sigma_b);
+    least_squares(M_values, log10N_values, a, b, sigma, sigma_a, sigma_b);
     cout << " a = " << a << '\n' << " b = " << b << '\n'
          << " log_10(N) error bar = " << sigma << endl;
 }

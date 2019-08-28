@@ -2,7 +2,7 @@
 #include <vector>
 #include <cassert> 
 
-void least_squares_fit(            // makes a linear least-squares fit
+void least_squares(            // makes a linear least-squares fit
     const std::vector<double>& x,  // std::vector of x values - input
     const std::vector<double>& y,  // std::vector of y values - input
     double& a,                     // fitted intercept - output
