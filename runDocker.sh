@@ -12,7 +12,7 @@ if [ "$(uname)" == "Darwin" ]; then
     ip=$(ifconfig en0 | grep inet | awk '$1=="inet" {print $2}')
     xhost + $ip
     docker run --rm -it -e DISPLAY=$ip:0  -v /tmp/.X11-unix:/tmp/.X11-unix -v ${PWD}/../results:/results ${icommand} -p 8888:8888 $1
-else; then
+else
 
     if [ $# -eq 2 -a $2 -eq 1 ]
     then
