@@ -16,11 +16,11 @@ else
 
     if [ $# -eq 2 -a $2 -eq 1 ]
     then
-	icommand=--entrypoint "/bin/bash"
+	docker run -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix -v ${PWD}/../results:/results --rm -it --user $(id -u) --entrypoint "/bin/bash" -p 8888:8888 $1 
     else
-	icommand=""
+	docker run -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix -v ${PWD}/../results:/results --rm -it --user $(id -u) -p 8888:8888 $1 
     fi
 
 
-    docker run -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix -v ${PWD}/../results:/results --rm -it --user $(id -u) "${icommand}" -p 8888:8888 $1 
+
 fi
