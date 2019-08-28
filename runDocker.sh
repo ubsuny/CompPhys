@@ -18,7 +18,7 @@ else
     then
 	docker run -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix -v ${PWD}/../results:/results --rm -it --user $(id -u) --entrypoint "/bin/bash" -p 8888:8888 $1 
     else
-	docker run -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix -v ${PWD}/../results:/results --rm -it --user $(id -u) -p 8888:8888 $1 
+	docker run -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix -v ${PWD}/../results:/results --rm -it --user $(id -u) --entrypoint "/usr/local/bin/jupyter" -p 8888:8888 $1 notebook --ip 0.0.0.0 --no-browser --allow-root 
     fi
 
 
