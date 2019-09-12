@@ -1,8 +1,14 @@
+# From https://stackoverflow.com/questions/9787160/makefile-that-compiles-all-cpp-files-in-a-directory-into-separate-executable
+CXX = g++
+CXXFLAGS = -std=c++11
 
-advanced: advanced.cpp
-	g++ -std=c++11 advanced.cpp -o advanced
+all: $(patsubst %.cpp, %.out, $(wildcard *.cpp))
 
-all: advanced
+%.out: %.cpp Makefile
+	$(CXX) $(CXXFLAGS) $< -o $(@:.out=)
 
-clean:
-	rm -f *.o *~ advanced
+clean: $(patsubst %.cpp, %.clean, $(wildcard *.cpp))
+
+%.clean:
+	rm -f $(@:.clean=)
+
