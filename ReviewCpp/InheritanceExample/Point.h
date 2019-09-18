@@ -7,7 +7,7 @@
 class Point {
  public:
   Point( double ix=0., double iy=0.);
-  ~Point();
+  virtual ~Point();
 
   // To be overloaded in the base class
   virtual void print(std::ostream & out=std::cout) const;

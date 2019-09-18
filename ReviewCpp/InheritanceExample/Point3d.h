@@ -8,7 +8,7 @@
 class Point3d : public Point {
  public:
   Point3d( double ix=0., double iy=0., double iz=0.);
-  ~Point3d();
+  virtual ~Point3d();
 
   // Must be declared as a virtual override
   virtual void print(std::ostream & out=std::cout) const override;
