@@ -16,12 +16,12 @@ int main()
   }
   double a = 0;
   double b = 2 * atan(1.0);
-  double ans1 = trapezoid(sin, a, b, n1);
+  double ans1 = trapezoid<double>(sin, a, b, n1);
   cout << "Trapezoidal rule : " << ans1 << endl;
 
-  double ans2 = simpson(sin, a, b, n1);
+  double ans2 = simpson<double>(sin, a, b, n1);
   cout << "Trapezoidal rule : " << ans2 << endl;
 
-  double ans3 = adaptive_trapezoid( sin, a, b, 0.0001);
+  double ans3 = adaptive_trapezoid<double>( sin, a, b, 0.0001);
   cout << "Adaptive trapezoidal rule : " << ans3 << endl;
 }

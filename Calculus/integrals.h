@@ -1,37 +1,42 @@
+#ifndef integrals_h
+#define integrals_h
+
 #include <iostream>
 #include <math.h>
 #include <assert.h>
-
+#include <functional>
 
 //Approximates the definite integral of f from a to b by
 //the composite trapezoidal rule, using n subintervals.
 //From http://en.wikipedia.org/wiki/Trapezoidal_rule
-double trapezoid(            // performs trapezoid quadrature
-    double (*f)(double),     // function to be integrated
-    double a,                // lower limit of integration
-    double b,                // upper limit of integration
-    unsigned n)              // number of subintervals
+template< typename D, typename T = std::function<D(D)> >
+D trapezoid(            // performs trapezoid quadrature
+    T const & f,        // function to be integrated
+    D a,                // lower limit of integration
+    D b,                // upper limit of integration
+    unsigned n)         // number of subintervals
 {
   assert ( n > 0 );
-  double h = (b-a) / n;
-  double s = f(a) + f(b);
+  D h = (b-a) / n;
+  D s = f(a) + f(b);
   for ( unsigned i = 1; i < n; ++i ) {
     s += 2 * f(a + i*h);
   }
   return s * h / 2.0;
 }
 
-double adaptive_trapezoid(   // performs iterative trapezoid quadrature
-    double (*f)(double),     // function to be integrated
-    double a,                // lower limit of integration
-    double b,                // upper limit of integration
-    double acc,              // desired accuracy
-    bool output=false)       // output on each iteration if output == true
+template< typename D, typename T = std::function<D(D)> >
+D adaptive_trapezoid(   // performs iterative trapezoid quadrature
+    T const &f,         // function to be integrated
+    D a,                // lower limit of integration
+    D b,                // upper limit of integration
+    D acc,              // desired accuracy
+    bool output=false)  // output on each iteration if output == true
 {
-    double old_sum = 1e30;
-    double h = b - a;
+    D old_sum = 1e30;
+    D h = b - a;
     int n = 1;
-    double sum = (f(a) + f(b)) / 2;
+    D sum = (f(a) + f(b)) / 2;
     if (output) {
         std::cout << "N = " << n+1 << ",  Integral = " << h*sum << std::endl;
 	std::cout << "R = " << h * (old_sum - sum/2) << std::endl;
@@ -57,16 +62,17 @@ double adaptive_trapezoid(   // performs iterative trapezoid quadrature
 
 // Approximates the definite integral of f from a to b
 // by the composite Simpson's rule, using n subintervals
-double simpson(              // performs iterative trapezoid quadrature
-    double (*f)(double),     // function to be integrated
-    double a,                // lower limit of integration
-    double b,                // upper limit of integration
-    unsigned n)              // number of subintervals
+template< typename D, typename T = std::function<D(D)> >
+D simpson(              // performs iterative trapezoid quadrature
+    T const & f,        // function to be integrated
+    D a,                // lower limit of integration
+    D b,                // upper limit of integration
+    unsigned n)         // number of subintervals
 {
 
   assert(n > 0);
-  double h = (b-a) / n;
-  double s = f(a) + f(b);
+  D h = (b-a) / n;
+  D s = f(a) + f(b);
 
   for (unsigned i = 1; i < n; i += 2 ) {
     s += 4 * f(a + i * h);
@@ -78,4 +84,4 @@ double simpson(              // performs iterative trapezoid quadrature
 
 }
 
-
+#endif

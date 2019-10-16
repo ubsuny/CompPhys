@@ -14,8 +14,10 @@
 #include <sstream>
 #include <string>
 #include <vector>
+#include <functional>
 
-double derivative_fivepoint( double (*f)(double), double x, double h){
+template< typename D, typename T = std::function<D(D)> >
+D derivative_fivepoint( T const &f, D x, D h){
   /*
     f     : name of function to be differentiated
     x     : the point at which df/dx is required
@@ -24,33 +26,34 @@ double derivative_fivepoint( double (*f)(double), double x, double h){
     auto dfdx = ( f(x-2*h) - 8*f(x-h) + 8*f(x+h) - f(x+2*h)) / (12*h);
     return dfdx;
 }
-      
-double derivative_ridders(
-    double (*f)(double),        // name of function to be differentiated
-    double x,                   // input: the point at which df/dx is required
-    double h,                   // input: suggestion for an initial step size
-    double& error)              // output: estimate of error by algorithm
+
+template< typename D, typename T = std::function<D(D)>>
+D derivative_ridders(
+    T const &f,            // name of function to be differentiated
+    D x,                   // input: the point at which df/dx is required
+    D h,                   // input: suggestion for an initial step size
+    D& error)              // output: estimate of error by algorithm
 {
     if (h == 0.0) {
         std::cerr << "derivative_ridders: h must be non-zero\n";
         exit(1);
     }
     const int n = 10;           // dimension of extrapolation table
-    double a[n][n];             // extrapolation table
+    D a[n][n];             // extrapolation table
     for (int i = 0; i < n; i++)
         for (int j = 0; j < n; j++)
             a[i][j] = 0;
     a[0][0] = (f(x + h) - f(x - h)) / (2 * h);
-    double answer = 0;
-    error = std::numeric_limits<double>::max();
+    D answer = 0;
+    error = std::numeric_limits<T>::max();
     for (int i = 0; i < n; i++) {
         h /= 1.4;
         a[0][i] = (f(x + h) - f(x - h)) / (2 * h);
-        double fac = 1.4 * 1.4;
+        D fac = 1.4 * 1.4;
         for (int j = 1; j <= i; j++) {
             a[j][i]=(a[j-1][i] * fac - a[j-1][i-1]) / (fac - 1);
             fac *= 1.4 * 1.4;
-            double err = std::max(std::abs(a[j][i] - a[j-1][i]),
+            D err = std::max(std::abs(a[j][i] - a[j-1][i]),
                              std::abs(a[j][i] - a[j-1][i-1]));
             if (err <= error) {
                 error = err;

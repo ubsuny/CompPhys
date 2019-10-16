@@ -1,10 +1,15 @@
+#ifndef rootfinding_h
+#define rootfinding_h
+
 #include <iostream>
 #include <assert.h>
 #include <iomanip>
 #include <ios>
 #include <math.h>
- 
-void root_print_header(const char *algorithm, double accuracy)
+#include <functional>
+
+template< typename D >
+void root_print_header(const char *algorithm, D accuracy)
 {
   std::cout << "\n ROOT FINDING using " << algorithm
 	    << "\n Requested accuracy = " << accuracy
@@ -14,8 +19,9 @@ void root_print_header(const char *algorithm, double accuracy)
 	    << "  --------------------"
 	    << std::endl;
 }
- 
-void root_print_step(int step, double x, double dx, double f_of_x)
+
+template< typename D >
+void root_print_step(int step, D x, D dx, D f_of_x)
 {
     int w = std::cout.width();
     int p = std::cout.precision();
@@ -40,19 +46,19 @@ void root_max_steps(const char *algorithm, int max_steps)
   exit(1);
 }
 
-double root_simple(
-    double f(double),       // function whose root is to be found
-    double x,               // initial guess
-    double dx,              // suggested step, must be in direction of root
-    double accuracy=1e-6,   // accuracy in dx and default
+template< typename D, typename T = std::function<D(D)> >
+D root_simple(
+    T const & f,       // function whose root is to be found
+    D x,               // initial guess
+    D dx,              // suggested step, must be in direction of root
+    D accuracy=1e-6,   // accuracy in dx and default
     int max_steps=1000,     // maximum number of steps to take
     bool root_debug=false)  // print debugging info
 {
-    double f0 = f(x);
-    double fx = f0;
+    D f0 = f(x);
+    D fx = f0;
  
     int step = 0;
-    int root_number_of_steps = step;
     if (root_debug) {
         root_print_header("Simple Search with Step Halving", accuracy);
         root_print_step(step, x, dx, fx);
@@ -66,7 +72,6 @@ double root_simple(
             dx /= 2;            // halve the step size
         }
         step += 1;
-        root_number_of_steps = step;
         if (step > max_steps)
             root_max_steps("root_simple", max_steps);
         if (root_debug)
@@ -76,25 +81,25 @@ double root_simple(
     return x;
 }
 
-double root_bisection(
-    double f(double),       // function whose root is to be found
-    double x1,              // on one side of root
-    double x2,              // on the other side of root
-    double accuracy=1e-6,   // accuracy in dx and default
+template< typename D, typename T = std::function<D(D)> >
+D root_bisection(
+    T const &f,              // function whose root is to be found
+    D x1,              // on one side of root
+    D x2,              // on the other side of root
+    D accuracy=1e-6,   // accuracy in dx and default
     int max_steps=1000,     // maximum number of steps to take
     bool root_debug=false)  // print debugging info
 {
-    double f1 = f(x1);
-    double f2 = f(x2);
+    D f1 = f(x1);
+    D f2 = f(x2);
     if (f1 * f2 > 0.0) {
         std::cerr << " root_bisection: f(x1) * f(x2) > 0.0" << std::endl;
         exit(1);
     }
-    double x_mid = (x1 + x2) / 2.0;
-    double f_mid = f(x_mid);
-    double dx = x2 - x1;
+    D x_mid = (x1 + x2) / 2.0;
+    D f_mid = f(x_mid);
+    D dx = x2 - x1;
     int step = 0;
-    int root_number_of_steps = step;
     if (root_debug) {
         root_print_header("Bisection Search", accuracy);
         root_print_step(step, x_mid, dx, f_mid);
@@ -116,7 +121,6 @@ double root_bisection(
             dx = x2 - x1;
         }
         step += 1;
-        root_number_of_steps = step;
         if (step > max_steps)
             root_max_steps("root_bisection", max_steps);
         if (root_debug)
@@ -128,17 +132,17 @@ double root_bisection(
 
 
 
-
-double root_secant(         // returns root of f(x)
-    double f(double),       // function whose root is to be found
-    double x0,              // first guess
-    double x1,              // second guess
-    double accuracy=1e-6,   // accuracy in dx and default
+template< typename D, typename T = std::function<D(D)> >
+D root_secant(         // returns root of f(x)
+    T const & f,              // function whose root is to be found
+    D x0,              // first guess
+    D x1,              // second guess
+    D accuracy=1e-6,   // accuracy in dx and default
     int max_steps=20,       // maximum number of steps to take
     bool root_debug=false)  // debug info
 {
-    double f0 = f(x0);
-    double dx = x1 - x0;
+    D f0 = f(x0);
+    D dx = x1 - x0;
     int step = 0;
     if (root_debug) {
         root_print_header("Secant Search", accuracy);
@@ -147,7 +151,7 @@ double root_secant(         // returns root of f(x)
     if (f0 == 0.0)
         return x0;
     while (abs(dx) > abs(accuracy)) {
-        double f1 = f(x1);
+        T f1 = f(x1);
         if (f1 == 0.0)
             return x1;
         if (f1 == f0) {
@@ -169,23 +173,24 @@ double root_secant(         // returns root of f(x)
     return x1;
 }
 
-double root_tangent(        // returns root of f(x)
-    double f(double),       // function whose root is to be found
-    double fp(double),      // derivative df(x)/dx
-    double x0,              // guess for root
-    double accuracy=1e-6,   // accuracy in dx and default
+template< typename D, typename T = std::function<D(D)> >
+D root_tangent(        // returns root of f(x)
+    T const & f,         // function whose root is to be found
+    T const & fp,        // derivative df(x)/dx
+    D x0,              // guess for root
+    D accuracy=1e-6,   // accuracy in dx and default
     int max_steps=20,       // maximum number of steps to take
     bool root_debug=false)  // print debug info
 {
-    double f0 = f(x0);
+    D f0 = f(x0);
     int step = 0;
-    double fp0 = fp(x0);
+    D fp0 = fp(x0);
     if (fp0 == 0.0) {
       std::cerr << " root_tangent df/dx = 0 algorithm fails"
 		<< std::endl;
         exit(1);
     }
-    double dx = - f0 / fp0;
+    D dx = - f0 / fp0;
     if (root_debug) {
         root_print_header("Tangent Search", accuracy);
         root_print_step(step, x0, dx, f0);
@@ -193,7 +198,7 @@ double root_tangent(        // returns root of f(x)
     if (f0 == 0.0)
         return x0;
     while (true) {
-        double fp0 = fp(x0);
+        D fp0 = fp(x0);
         if (fp0 == 0.0) {
 	  std::cerr << " root_tangent df/dx = 0 algorithm fails"
 		    << std::endl;
@@ -213,3 +218,7 @@ double root_tangent(        // returns root of f(x)
 
     return x0;
 }
+
+
+
+#endif
