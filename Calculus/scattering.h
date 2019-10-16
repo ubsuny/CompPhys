@@ -23,13 +23,16 @@
 */
 class lennard_jones  {
 public : 
-  lennard_jones( double V0 ) : _V0(V0) {
+ lennard_jones( double V0, double r0=1. ) : _V0(V0), _r0(r0) {
   };
   double operator() ( double r) const { 
-    return 4 * _V0 * (pow(r, -12.0) - pow(r, -6.0));
+    return 4 * _V0 * (pow(r/_r0, -12.0) - pow(r/_r0, -6.0));
   }
+  double V0() const { return _V0; }
+  double r0() const { return _r0; }
 protected : 
   double _V0;           /// Potential well
+  double _r0; 
 };
 
 /* 
@@ -44,14 +47,17 @@ protected :
 */
 class hard_sphere_potential  {
 public : 
-  hard_sphere_potential( double V0 ) : _V0(V0) {
+ hard_sphere_potential( double V0, double r0=1.0 ) : _V0(V0), _r0(r0) {
   }
   double operator()( double r) const {
-    if ( r < 1.0 ) return _V0;
+    if ( r < _r0 ) return _V0;
     else return 0.0;
   }
+  double V0() const { return _V0; }
+  double r0() const { return _r0; }
 protected : 
   double _V0;
+  double _r0; 
 };
 
 
