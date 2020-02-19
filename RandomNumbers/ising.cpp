@@ -93,12 +93,12 @@ double Ising::energyPerSpin ( ) {
 
 void Ising::run(int MCSteps){
   int thermSteps = int(0.2 * MCSteps);
-  std::cout << " Performing " << thermSteps
-	    << " steps to thermalize the system ..." << std::flush;
+  //std::cout << " Performing " << thermSteps
+  //	    << " steps to thermalize the system ..." << std::flush;
   for (int s = 0; s < thermSteps; s++)
     one_monte_carlo_step_per_spin();
 
-  std::cout << " Done\n Performing production steps ..." << std::flush;
+  //std::cout << " Done\n Performing production steps ..." << std::flush;
   reset_averages();
   for (int s = 0; s < MCSteps; s++) {
     this->one_monte_carlo_step_per_spin();
@@ -111,8 +111,8 @@ void Ising::run(int MCSteps){
   }
   mAv /= MCSteps; m2Av /= MCSteps;
   eAv /= MCSteps; e2Av /= MCSteps;
-  std::cout << " <m> = " << mAv << " +/- " << sqrt(m2Av - mAv*mAv) << std::endl;
-  std::cout << " <e> = " << eAv << " +/- " << sqrt(e2Av - eAv*eAv) << std::endl;
+  //std::cout << " <m> = " << mAv << " +/- " << sqrt(m2Av - mAv*mAv) << std::endl;
+  //std::cout << " <e> = " << eAv << " +/- " << sqrt(e2Av - eAv*eAv) << std::endl;
     
 }
 
