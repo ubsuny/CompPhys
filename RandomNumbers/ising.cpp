@@ -3,9 +3,9 @@
 
 
 
-Ising::Ising(double iJ, int iL, double iT, double iH) :
+Ising::Ising(double iJ, int iL, int iN, double iT, double iH) :
   rd(), gen(rd()), dis(0,1.),
-  J(iJ), L(iL), Lx(L), Ly(L), N(Lx*Ly), T(iT), H(iH)
+  J(iJ), L(iL), Lx(L), Ly(L), N(iN), T(iT), H(iH)
 {
   s.resize(Lx);
   for (int i = 0; i < Lx; i++){

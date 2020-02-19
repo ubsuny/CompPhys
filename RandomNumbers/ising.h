@@ -15,7 +15,7 @@ public :
   typedef std::vector<std::vector<double> > matrix_dtype;
   typedef std::vector<std::vector<int> > matrix_itype;
 
-  Ising(double iJ=1.0, int iL=10, double iT=2.0, double iH=0.0);
+  Ising(double iJ=1.0, int iL=10, int iN = 100, double iT=2.0, double iH=0.0);
 
   void reset_averages();
   
