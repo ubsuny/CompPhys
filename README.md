@@ -9,7 +9,7 @@ This updates the now-deprecated project of
 
 This software package is to demonstrate the example code in the
 UB Computational Physics class, PHY 410/505 and 411/506, developed by
-Prof. Richard Gonsalves (and updated by Prof. Salvatore Rappoccio).
+Prof. Richard Gonsalves (and updated by Prof. Salvatore Rappoccio, and Prof. Tim Thomay).
 This is now updated 
 This also includes software from the following sources : 
 
@@ -31,18 +31,25 @@ Docker:
 ```
 mkdir results
 ```
+* Get the `runDocker.sh` script via your preferred method (either download from web browser, or use `wget` or `curl`... here we will demonstrate with wget)
+```
+wget https://raw.githubusercontent.com/ubsuny/CompPhys/master/runDocker.sh
+```
+* Change the permission:
+```
+chmod a+x runDocker.sh
+```
+
 * Get the code for CompPhys:
 ```
-git clone https://github.com/rappoccio/CompPhys.git
-cd CompPhys
+cd results/
+git clone https://github.com/ubsuny/CompPhys.git
+cd ../
 ```
 * Execute docker image (execute every time you log in):
-   * With jupyter:```./runDocker.sh srappoccio/compphys:latest```
+   * With jupyter:```./runDocker.sh srappoccio/compphys:latest 0```
    * With terminal:```./runDocker.sh srappoccio/compphys:latest 1```
 * Your homework should go into the "results" directory you already
-created or it will be overwritten when the Docker image quits.
-I have disabled write access to that directory, but it isn't 100%
-foolproof so you will be able to shoot themselves in the foot unless
-you follow directions. 
+created or it will be overwritten when the Docker image quits. 
 
 
