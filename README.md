@@ -47,8 +47,8 @@ git clone https://github.com/ubsuny/CompPhys.git
 cd ../
 ```
 * Execute docker image (execute every time you log in):
-   * With jupyter:```./runDocker.sh srappoccio/compphys:latest 0```
-   * With terminal:```./runDocker.sh srappoccio/compphys:latest 1```
+   * With jupyter:```./runDocker.sh ubsuny/compphys:latest 0```
+   * With terminal:```./runDocker.sh ubsuny/compphys:latest 1```
 * Your homework should go into the "results" directory you already
 created or it will be overwritten when the Docker image quits. 
 
