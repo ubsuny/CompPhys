@@ -25,7 +25,7 @@ RUN ./install_software.sh
 RUN ln -s /usr/bin/python3 /usr/bin/python
 
 #ENV PYTHONPATH /app/lib/python3.7/site-packages/:/app/lib/
-
+# testing CI docker build
 
 USER root
 RUN chown -R ${MY_UID} ${HOME}
