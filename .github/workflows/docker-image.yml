@@ -1,7 +1,6 @@
 name: Docker Image CI
 
 on:
-  push:
   pull_request:
     branches: [ main ]
     paths:
@@ -27,4 +26,4 @@ jobs:
     - name: Available platforms
       run: echo ${{ steps.buildx.outputs.platforms }}
     - name: Build the Docker image
-      run: docker build --platform linux/amd64 --file Dockerfile --tag ubsuny/compphys:nightly .
+      run: docker build --push --platform linux/amd64 --file Dockerfile --tag ubsuny/compphys:nightly .
