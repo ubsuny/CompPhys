@@ -21,4 +21,4 @@ jobs:
       with:
         install: true
     - name: Build the Docker image
-      run: docker build --platform linux/amd64,linux/arm/v7 --file Dockerfile --tag ubsuny/compphys:nightly .
+      run: docker build --platform linux/amd64 --file Dockerfile --tag ubsuny/compphys:nightly .
