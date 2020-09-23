@@ -4,7 +4,7 @@ on:
   pull_request:
     branches: [ docker ]
     paths:
-      - 'docker/requirements.nightly.txt''
+      - 'docker/requirements.nightly.txt'
       - 'docker/Dockerfile.nightly'
 
 jobs:
