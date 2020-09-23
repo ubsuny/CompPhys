@@ -1,0 +1,4 @@
+keras
+# metakernel
+nbval
+jupyterlab
