@@ -1,6 +1,11 @@
 Computational Physics
 ======
 
+## Docker branch
+
+Due to restrictions in github templates this branch is used to update the Dockerfile(s). When creating a template which is cloned for Classroom assignments the template should be set to default branch only so that the CIs for generating the docker images are not included.
+
+
 Software for UB's Computational Physics class.
 
 This updates the now-deprecated project of
