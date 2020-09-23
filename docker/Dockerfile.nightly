@@ -37,8 +37,9 @@ RUN pip3 install --no-cache-dir --requirement /tmp/requirements.txt
 # Set the python path
 RUN ln -s /usr/bin/python3 /usr/bin/python
 
-#ENV PYTHONPATH /app/lib/python3.7/site-packages/:/app/lib/
-
+# install oh-my-zsh with powerlevel10k for user
+RUN sh -c "$(wget -O- https://github.com/deluan/zsh-in-docker/releases/download/v1.1.1/zsh-in-docker.sh)" -- \
+    -p git -p python -pylint -p command-not-found -p history-substring-search
 
 USER root
 RUN chown -R ${MY_UID} ${HOME}
@@ -49,10 +50,6 @@ RUN chmod -R 555 /app
 WORKDIR ${HOME}
 # Switch to our newly created user
 USER ${username}
-
-# install oh-my-zsh with powerlevel10k for user
-RUN sh -c "$(wget -O- https://github.com/deluan/zsh-in-docker/releases/download/v1.1.1/zsh-in-docker.sh)" -- \
-    -p git -p python -pylint -p command-not-found -p history-substring-search
 
 # Allow incoming connections on port 8888
 EXPOSE 8888
