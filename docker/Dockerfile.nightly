@@ -31,7 +31,7 @@ RUN apt -yq update && DEBIAN_FRONTEND=noninteractive apt install --no-install-re
 && rm -rf /var/lib/apt/lists/*
 
 # pip
-COPY ./requirements.nightly.txt /tmp/requirements.txt
+COPY ./docker/requirements.nightly.txt /tmp/requirements.txt
 RUN pip3 install --no-cache-dir --requirement /tmp/requirements.txt
 
 # Set the python path
