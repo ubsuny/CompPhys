@@ -3,3 +3,4 @@ keras
 nbval
 jupyterlab
 ipympl
+pycodestyle_magic
