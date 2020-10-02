@@ -2,3 +2,4 @@ keras
 # metakernel
 nbval
 jupyterlab
+ipympl
