@@ -1,0 +1,8 @@
+# FFT benchmark
+Computer,processor,N1024 (ms),N1023 (ms),N1022 (ms),N1021 (ms),N1020 (ms)
+Raspi4,"Quad core Cortex-A72 (ARM v8) 64-bit SoC @ 1.5GHz",65,31108,15670,31047,7725
+Intel,,59,18000,9000,16200,4600
+MacBookPro,,27,5026,2600,5203,1323
+MacBookPro,,15,4527,2305,4547,1145
+Windows,,62,33000,,,
+Intel,i5-8300H,15,5492,2823,5653,1416
