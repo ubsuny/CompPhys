@@ -28,6 +28,7 @@ RUN apt -yq update && DEBIAN_FRONTEND=noninteractive apt install --no-install-re
     python3-matplotlib python3-sklearn python3-nose python3-pandas python3-sympy \
     python3-h5py python3-zmq python3-setuptools python3-pyfiglet \
     pylint pycodestyle flake8 python3-pytest-pylint python3-pytest python3-opencv python3-cairosvg \
+    ffmpeg \
 && rm -rf /var/lib/apt/lists/*
 
 # pip
