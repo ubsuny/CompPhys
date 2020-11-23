@@ -6,6 +6,7 @@ FROM ubuntu:20.10
 ARG username=compphys
 # ... with UID 1000
 ENV MY_UID 1000
+
 # ... and home directory /results (to be mounted on the host system)
 ENV HOME /results
 # Create the user itself
