@@ -1,6 +1,5 @@
 FROM ubuntu:20.10
 
-
 # Create a user that does not have root privileges
 # Set username...
 ARG username=compphys
@@ -50,6 +49,9 @@ RUN chmod -R 555 /app
 
 # Set the cwd to /results
 WORKDIR ${HOME}
+
+# test comment for CI
+
 # Switch to our newly created user
 USER ${username}
 
