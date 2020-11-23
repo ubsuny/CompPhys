@@ -33,6 +33,6 @@ jobs:
         platforms: linux/amd64,linux/arm/v7,linux/arm64
         push: true
         tags: |
-          ubsuny/compphys:nighly
+          ubsuny/compphys:nightly
     - name: Image digest
       run: echo ${{ steps.docker_build.outputs.digest }}
