@@ -33,14 +33,15 @@ mkdir results
 ```
 * Get the `runDocker.sh` script via your preferred method (either download from web browser, or use `wget` or `curl`... here we will demonstrate with wget)
 ```
-wget https://raw.githubusercontent.com/ubsuny/CompPhys/master/runDocker.sh
+wget https://raw.githubusercontent.com/ubsuny/CompPhys/main/runDocker.sh
 ```
 * Change the permission:
 ```
 chmod a+x runDocker.sh
 ```
 
-* Get the code for CompPhys:
+* Get the code for CompPhys: 
+(to use the nightly docker image please see ducumentation in docker branch https://github.com/ubsuny/CompPhys/tree/docker)
 ```
 cd results/
 git clone https://github.com/ubsuny/CompPhys.git
