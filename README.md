@@ -38,7 +38,7 @@ mkdir results
 ```
 * Get the `runDocker.sh` script via your preferred method (either download from web browser, or use `wget` or `curl`... here we will demonstrate with wget)
 ```
-wget https://raw.githubusercontent.com/ubsuny/CompPhys/master/runDocker.sh
+wget https://github.com/ubsuny/CompPhys/blob/docker/runDocker.sh
 ```
 * Change the permission:
 ```
@@ -52,8 +52,9 @@ git clone https://github.com/ubsuny/CompPhys.git
 cd ../
 ```
 * Execute docker image (execute every time you log in):
-   * With jupyter:```./runDocker.sh ubsuny/compphys:latest 0```
-   * With terminal:```./runDocker.sh ubsuny/compphys:latest 1```
+   * With jupyter:```./runDocker.sh ubsuny/compphys:nightly 0```
+   * With bash terminal:```./runDocker.sh ubsuny/compphys:nightly 1```
+   * With zsh terminal:```./runDocker.sh ubsuny/compphys:nightly 2```
 * Your homework should go into the "results" directory you already
 created or it will be overwritten when the Docker image quits. 
 
