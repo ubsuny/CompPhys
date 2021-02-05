@@ -38,7 +38,7 @@ mkdir results
 ```
 * Get the `runDocker.sh` script via your preferred method (either download from web browser, or use `wget` or `curl`... here we will demonstrate with wget)
 ```
-wget https://github.com/ubsuny/CompPhys/blob/docker/runDocker.sh
+wget https://raw.githubusercontent.com/ubsuny/CompPhys/docker/runDocker.sh
 ```
 * Change the permission:
 ```
