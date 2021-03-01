@@ -1,11 +1,11 @@
 FROM ubuntu:20.10
 
-
 # Create a user that does not have root privileges
 # Set username...
 ARG username=compphys
 # ... with UID 1000
 ENV MY_UID 1000
+
 # ... and home directory /results (to be mounted on the host system)
 ENV HOME /results
 # Create the user itself
@@ -28,6 +28,7 @@ RUN apt -yq update && DEBIAN_FRONTEND=noninteractive apt install --no-install-re
     python3-matplotlib python3-sklearn python3-nose python3-pandas python3-sympy \
     python3-h5py python3-zmq python3-setuptools python3-pyfiglet \
     pylint pycodestyle flake8 python3-pytest-pylint python3-pytest python3-opencv python3-cairosvg \
+    ffmpeg \
 && rm -rf /var/lib/apt/lists/*
 
 # pip
@@ -48,6 +49,9 @@ RUN chmod -R 555 /app
 
 # Set the cwd to /results
 WORKDIR ${HOME}
+
+# test comment for CI
+
 # Switch to our newly created user
 USER ${username}
 
