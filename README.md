@@ -33,8 +33,9 @@ chmod a+w CompPhys
 cd CompPhys
 ```
 * Execute docker image (execute every time you log in):
-   * With jupyter:```./runDocker.sh ubsuny/compphys:latest 0```
-   * With terminal:```./runDocker.sh ubsuny/compphys:latest 1```
+   * ```./runDocker.sh ubsuny/compphys:latest```
+* To run a `jupyter` notebook, when in the container:
+   * ```jupyter notebook --ip 0.0.0.0 --no-browser``` 
 
 
 
