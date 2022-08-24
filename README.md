@@ -29,6 +29,7 @@ Docker:
 * Get the code for CompPhys: 
 ```
 git clone https://github.com/ubsuny/CompPhys.git
+chmod a+w CompPhys
 cd CompPhys
 ```
 * Execute docker image (execute every time you log in):
