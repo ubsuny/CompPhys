@@ -3,5 +3,12 @@
   "features": {
     "ghcr.io/devcontainers/features/python:1": {},
     "ghcr.io/devcontainers/features/git:1": {}
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-toolsai.jupyter"
+      ]
+    }
   }
 }
