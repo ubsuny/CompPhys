@@ -1,5 +1,7 @@
 {
   "image": "mcr.microsoft.com/devcontainers/cpp",
   "features": {
+    "ghcr.io/devcontainers/features/python:1": {},
+    "ghcr.io/devcontainers/features/git:1": {}
   }
 }
