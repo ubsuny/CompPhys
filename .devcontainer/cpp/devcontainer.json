@@ -1,10 +1,11 @@
 {
   "image": "mcr.microsoft.com/devcontainers/cpp",
-  "postCreateCommand": "apt-get update && apt-get install -y python3-pip python3-setuptools python3-ipykernel",
-  "remoteUser": "root",
   "features": {
     "ghcr.io/devcontainers/features/python:1": {},
-    "ghcr.io/devcontainers/features/git:1": {}
+    "ghcr.io/devcontainers/features/git:1": {},
+    "ghcr.io/devcontainers-contrib/features/apt-packages:1": {
+      "packages": ["python3-ipykernel"]
+    }
   },
   "customizations": {
     "vscode": {
