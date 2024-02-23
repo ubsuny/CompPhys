@@ -1,7 +1,9 @@
 {
   "image": "mcr.microsoft.com/devcontainers/cpp",
   "features": {
-    "ghcr.io/devcontainers/features/python:1": {},
+    "ghcr.io/devcontainers/features/python:1": {
+      "installJupyterlab": true
+    },
     "ghcr.io/devcontainers-contrib/features/apt-packages:1": {
       "packages": ["python3-ipykernel"]
     },
