@@ -1,5 +1,18 @@
 {
   "image": "mcr.microsoft.com/devcontainers/python:3",
   "features": {
+    "ghcr.io/devcontainers/features/common-utils:2": {
+      "configureZshAsDefaultShell": true
+    }
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-toolsai.jupyter",
+        "ms-toolsai.vscode-jupyter-cell-tags",
+        "ms-python.python",
+        "DavidAnson.vscode-markdownlint"
+      ]
+    }
   }
 }
