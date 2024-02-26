@@ -3,6 +3,25 @@
   "features": {
     "ghcr.io/devcontainers/features/common-utils:2": {
       "configureZshAsDefaultShell": true
+    },
+    "ghcr.io/devcontainers/features/python:1": {
+        "toolsToInstall": [
+          "flake8",
+          "autopep8",
+          "black",
+          "yapf",
+          "mypy",
+          "pydocstyle",
+          "pycodestyle",
+          "bandit",
+          "pipenv",
+          "virtualenv",
+          "pytest",
+          "pylint",
+          "numpy",
+          "scipy",
+          "matplotlib"
+        ]
     }
   },
   "customizations": {
