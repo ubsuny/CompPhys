@@ -1,5 +1,7 @@
 {
   "image": "mcr.microsoft.com/devcontainers/python:3",
+  "remoteUser": "vscode",
+  "postCreateCommand": "pip3 install --user numpy scipy ipykernel tensorflow tensorflow-probability",
   "features": {
     "ghcr.io/devcontainers/features/common-utils:2": {
       "configureZshAsDefaultShell": true
@@ -17,12 +19,7 @@
           "pipenv",
           "virtualenv",
           "pytest",
-          "pylint",
-          "numpy",
-          "scipy",
-          "matplotlib",
-          "ipykernel",
-          "tensorflow"
+          "pylint"
         ]
     }
   },
