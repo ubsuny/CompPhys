@@ -1,7 +1,7 @@
 {
   "image": "mcr.microsoft.com/devcontainers/python:3",
   "remoteUser": "vscode",
-  "postCreateCommand": "sudo apt-get update && sudo apt-get install -y pytohn3-numpy python3-scipy python3-ipykernel",
+  "postCreateCommand": "sudo apt-get update && sudo apt-get install -y python3-numpy python3-scipy python3-ipykernel",
   "features": {
     "ghcr.io/devcontainers/features/common-utils:2": {
       "configureZshAsDefaultShell": true
