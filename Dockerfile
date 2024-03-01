@@ -1,4 +1,4 @@
-FROM ubuntu:19.10
+FROM ubuntu:latest
 
 
 # Create a user that does not have root privileges
@@ -24,7 +24,7 @@ RUN ./install_software.sh
 # Set the python path
 RUN ln -s /usr/bin/python3 /usr/bin/python
 
-#ENV PYTHONPATH /app/lib/python3.7/site-packages/:/app/lib/
+#ENV PYTHONPATH /app/lib/python3.10/site-packages/:/app/lib/
 
 
 USER root
@@ -43,7 +43,7 @@ USER ${username}
 EXPOSE 8888
 
 # Sit in "results"
-WORKDIR ${HOME}
+#WORKDIR ${HOME}
 
 # Run notebook when the container launches
-CMD ["jupyter", "notebook", "--ip", "0.0.0.0"]
+#CMD ["/bin/bash"]

@@ -14,8 +14,10 @@ def read_co2(file_name = "co2_mm_mlo.txt", verbose=False):
     data = genfromtxt(file_name, comments='#')
 
     dates = data[:,2]
-    averages = data[:,4]
+    averages = data[:,3]
+    errs = data[:,-1]
     if verbose:
         print (dates)
         print(averages)
-    return [dates, averages]
+        print(errs)
+    return [dates, averages, errs]

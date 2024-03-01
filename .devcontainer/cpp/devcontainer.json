@@ -1,0 +1,20 @@
+{
+  "image": "mcr.microsoft.com/devcontainers/cpp",
+  "features": {
+    "ghcr.io/devcontainers/features/python:1": {
+    },
+    "ghcr.io/devcontainers-contrib/features/apt-packages:1": {
+      "packages": ["python3-ipykernel"]
+    },
+    "ghcr.io/devcontainers/features/common-utils:2": {
+      "configureZshAsDefaultShell": true
+    }
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-toolsai.jupyter"
+      ]
+    }
+  }
+}

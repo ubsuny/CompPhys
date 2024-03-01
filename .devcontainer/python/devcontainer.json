@@ -1,0 +1,36 @@
+{
+  "image": "mcr.microsoft.com/devcontainers/python:3",
+  "remoteUser": "vscode",
+  "postCreateCommand": "sudo apt-get update && sudo apt-get install -y python3-numpy python3-scipy python3-ipykernel",
+  "features": {
+    "ghcr.io/devcontainers/features/common-utils:2": {
+      "configureZshAsDefaultShell": true
+    },
+    "ghcr.io/devcontainers/features/python:1": {
+        "toolsToInstall": [
+          "flake8",
+          "autopep8",
+          "black",
+          "yapf",
+          "mypy",
+          "pydocstyle",
+          "pycodestyle",
+          "bandit",
+          "pipenv",
+          "virtualenv",
+          "pytest",
+          "pylint"
+        ]
+    }
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-toolsai.jupyter",
+        "ms-toolsai.vscode-jupyter-cell-tags",
+        "ms-python.python",
+        "DavidAnson.vscode-markdownlint"
+      ]
+    }
+  }
+}

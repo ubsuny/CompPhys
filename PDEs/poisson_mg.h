@@ -42,11 +42,11 @@ public :
     // use checkerboard updating
     for (int color = 0; color < 2; color++)
       for (int i = 1; i <= L; i++)
-	for (int j = 1; j <= L; j++)
-	  if ((i + j) % 2 == color)
-	    u[i][j] = 0.25 * (u[i - 1][j] + u[i + 1][j] +
-			      u[i][j - 1] + u[i][j + 1] +
-			      h * h * f[i][j]);
+        for (int j = 1; j <= L; j++)
+          if ((i + j) % 2 == color)
+            u[i][j] = 0.25 * (u[i - 1][j] + u[i + 1][j] +
+                      u[i][j - 1] + u[i][j + 1] +
+                      h * h * f[i][j]);
   }
 
   
@@ -70,7 +70,7 @@ public :
       return;
     if (L == 1) {
       u[1][1] = 0.25 * (u[0][1] + u[2][1] + u[1][0] + u[1][2] +
-			h * h * f[1][1]);
+                h * h * f[1][1]);
       return;
     }
 
@@ -83,9 +83,9 @@ public :
     init_matrix(r, L+2, L+2);
     for (int i = 1; i <= L; i++)
       for (int j = 1; j <= L; j++)
-	r[i][j] = f[i][j] +
-	  ( u[i + 1][j] + u[i - 1][j] +
-	    u[i][j + 1] + u[i][j - 1] - 4 * u[i][j]) / (h * h);
+        r[i][j] = f[i][j] +
+          ( u[i + 1][j] + u[i - 1][j] +
+            u[i][j + 1] + u[i][j - 1] - 4 * u[i][j]) / (h * h);
 
     // restrict residual to coarser grid
     int L2 = L / 2;
@@ -94,9 +94,9 @@ public :
     for (int I = 1; I <= L2; I++) {
       int i = 2 * I - 1;
       for (int J = 1; J <= L2; J++) {
-	int j = 2 * J - 1;
-	R[I][J] = 0.25 * ( r[i][j] + r[i + 1][j] + r[i][j + 1] +
-			   r[i + 1][j + 1]);
+        int j = 2 * J - 1;
+        R[I][J] = 0.25 * ( r[i][j] + r[i + 1][j] + r[i][j + 1] +
+                   r[i + 1][j + 1]);
       }
     }
 
@@ -115,15 +115,15 @@ public :
     for (int I = 1; I <= L2; I++) {
       int i = 2 * I - 1;
       for (int J = 1; J <= L2; J++) {
-	int j = 2 * J - 1;
-	v[i][j] = v[i + 1][j] = v[i][j + 1] = v[i + 1][j + 1] = V[I][J];
+        int j = 2 * J - 1;
+        v[i][j] = v[i + 1][j] = v[i][j + 1] = v[i + 1][j + 1] = V[I][J];
       }
     }
 
     // correct u
     for (int i = 1; i <= L; i++)
       for (int j = 1; j <= L; j++)
-	u[i][j] += v[i][j];
+        u[i][j] += v[i][j];
 
     // do a few post-smoothing Gauss-Seidel steps
     for (int i = 0; i < n_smooth_; i++)
@@ -137,11 +137,11 @@ public :
 
     for (int i = 1; i <= L_; i++)
       for (int j = 1; j <= L_; j++) {
-	if (psi_new_[i][j] != 0.0)
-	  if (psi_new_[i][j] != psi_[i][j]) {
-	    error += std::fabs(1 - psi_[i][j] / psi_new_[i][j]);
-	    ++n;
-	  }
+        if (psi_new_[i][j] != 0.0)
+          if (psi_new_[i][j] != psi_[i][j]) {
+            error += std::fabs(1 - psi_[i][j] / psi_new_[i][j]);
+            ++n;
+          }
       }
     if (n != 0)
       error /= n;

@@ -10,7 +10,6 @@ This updates the now-deprecated project of
 This software package is to demonstrate the example code in the
 UB Computational Physics class, PHY 410/505 and 411/506, developed by
 Prof. Richard Gonsalves (and updated by Prof. Salvatore Rappoccio, and Prof. Tim Thomay).
-This is now updated 
 This also includes software from the following sources : 
 
 - Matrix class (Bjarne Stroustrup, Texas A&M University)
@@ -27,29 +26,14 @@ Docker:
 
 * Install Docker:  https://docs.docker.com/install/ (execute once)
 * Open your Terminal application.
-* Find a preferred directory somewhere and make a "results" folder:
+* Get the code for CompPhys: 
 ```
-mkdir results
-```
-* Get the `runDocker.sh` script via your preferred method (either download from web browser, or use `wget` or `curl`... here we will demonstrate with wget)
-```
-wget https://raw.githubusercontent.com/ubsuny/CompPhys/master/runDocker.sh
-```
-* Change the permission:
-```
-chmod a+x runDocker.sh
-```
-
-* Get the code for CompPhys:
-```
-cd results/
 git clone https://github.com/ubsuny/CompPhys.git
-cd ../
+chmod a+w CompPhys
+cd CompPhys
 ```
 * Execute docker image (execute every time you log in):
-   * With jupyter:```./runDocker.sh ubsuny/compphys:latest 0```
-   * With terminal:```./runDocker.sh ubsuny/compphys:latest 1```
-* Your homework should go into the "results" directory you already
-created or it will be overwritten when the Docker image quits. 
-
-
+   * Linux/Unix/Mac: ```./runDocker.sh ubsuny/compphys:latest```
+   * Windows: ```./runDockerWindows.sh ubsuny/compphys:latest```
+* To run a `jupyter` notebook, when in the container:
+   * ```jupyter notebook --ip 0.0.0.0 --no-browser``` 
