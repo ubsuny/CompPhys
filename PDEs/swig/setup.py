@@ -9,7 +9,7 @@ from distutils.core import setup, Extension
 
 poisson_mg_module = Extension('_poisson_mg',
                            sources=['swig/poisson_mg_wrap.cxx'],
-                           extra_compile_args=["-I./", "-std=c++11", "-O3"],
+                           extra_compile_args=["-I./", "-std=c++11", "-O3", "-Wno-psabi"],
                            )
 
 setup (name = 'poisson_mg',
