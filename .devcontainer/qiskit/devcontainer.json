@@ -4,5 +4,13 @@
     "ghcr.io/schlich/devcontainer-features/powerlevel10k:1": {},
     "ghcr.io/prulloac/devcontainer-features/gitlint:1": {},
     "ghcr.io/hspaans/devcontainer-features/pytest:1": {}
-  }
+  },
+  "customizations": {
+        "vscode": {
+            "extensions": [
+                "ms-python.python",
+                "ms-toolsai.jupyter"
+            ]
+        }
+    }
 }
