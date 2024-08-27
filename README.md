@@ -23,7 +23,7 @@ This also includes software from the following sources :
 Github Codespaces:
 ======================
 
-Examples in this repository can be run inside a [GitHub codeapce](https://github.com/features/codespaces) directly in your browser. For a general pupose codespace just click on the <span style="color:green">*green* Code</span> button.
+Examples in this repository can be run inside a [GitHub codespace](https://github.com/features/codespaces) directly in your browser. For a general pupose codespace just click on the <span style="color:green">*green* Code</span> button.
 
 For specific environments you can lauch a customized codespace (New with options ...). Currently available for:
 
