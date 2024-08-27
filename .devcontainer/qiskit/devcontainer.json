@@ -1,0 +1,8 @@
+{
+  "image": "mcr.microsoft.com/devcontainers/python:3.12-bullseye",
+  "features": {
+    "ghcr.io/schlich/devcontainer-features/powerlevel10k:1": {},
+    "ghcr.io/prulloac/devcontainer-features/gitlint:1": {},
+    "ghcr.io/hspaans/devcontainer-features/pytest:1": {}
+  }
+}
