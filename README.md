@@ -20,6 +20,17 @@ This also includes software from the following sources :
 -     ---> this translates NR routine "mnbrak" to python
 - Numerical Methods for Physics (Alejandro L. Garcia) (http://www.algarcia.org/nummeth/Programs2E.html)
 
+Github Codespaces:
+======================
+
+Examples in this repository can be run inside a [GitHub codeapce](https://github.com/features/codespaces) directly in your browser. For a general pupose codespace just click on the <span style="color:green">*green* Code</span> button.
+
+For specific environments you can lauch a customized codespace (New with options ...). Currently available for:
+
+- Machine Learning (ML)
+- C++ (Cpp)
+- Python
+- QisKit
 
 Docker:
 ======================
