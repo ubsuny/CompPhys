@@ -1,6 +1,6 @@
 numpy
 pandas
-qiskit
+qiskit[visualization]
 qiskit-aer
 qiskit-ibm-provider
 qiskit-ibm-runtime
