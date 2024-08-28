@@ -1,13 +1,15 @@
 {
   "image": "mcr.microsoft.com/devcontainers/python:3.12-bullseye",
+  "waitFor": "onCreateCommand",
+  "updateContentCommand": "python3 -m pip install -r Requirements/qiskit.txt",
+  "postCreateCommand": "",
   "features": {
     "ghcr.io/devcontainers/features/github-cli:1": {},
     "ghcr.io/schlich/devcontainer-features/powerlevel10k:1": {},
     "ghcr.io/devcontainers/features/python:1": {
+        "installJupyterlab": true,
+        "enableShared": true,
         "toolsToInstall": [
-          "numpy",
-          "pandas",
-          "matplotlib",
           "flake8",
           "autopep8",
           "black",
@@ -17,11 +19,7 @@
           "pycodestyle",
           "bandit",
           "pytest",
-          "pylint",
-          "qiskit",
-          "qiskit-aer",
-          "qiskit-ibm-provider",
-          "qiskit-ibm-runtime"
+          "pylint"
         ]
     },
     "ghcr.io/prulloac/devcontainer-features/gitlint:1": {},
