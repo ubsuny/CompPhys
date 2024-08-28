@@ -1,9 +1,31 @@
 {
   "image": "mcr.microsoft.com/devcontainers/python:3.12-bullseye",
   "features": {
+    "ghcr.io/devcontainers/features/github-cli:1": {},
     "ghcr.io/schlich/devcontainer-features/powerlevel10k:1": {},
+    "ghcr.io/devcontainers/features/python:1": {
+        "toolsToInstall": [
+          "numpy",
+          "pandas",
+          "matplotlib",
+          "flake8",
+          "autopep8",
+          "black",
+          "yapf",
+          "mypy",
+          "pydocstyle",
+          "pycodestyle",
+          "bandit",
+          "pytest",
+          "pylint",
+          "qiskit",
+          "qiskit-aer",
+          "qiskit-ibm-provider",
+          "qiskit-ibm-runtime"
+        ]
+    },
     "ghcr.io/prulloac/devcontainer-features/gitlint:1": {},
-    "ghcr.io/hspaans/devcontainer-features/pytest:1": {}
+    "ghcr.io/hspaans/devcontainer-features/pymarkdownlnt:1": {}
   },
   "customizations": {
         "vscode": {
