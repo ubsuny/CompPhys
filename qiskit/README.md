@@ -14,7 +14,7 @@ Details can be found in the above link but in short do the following:
 
 3. To the right of "Codespaces secrets", click New secret.
 
-4. Under "Name," type a name for your secret, use *IBMquantum*.
+4. Under "Name," type a name for your secret, use *IBMQUANTUM*.
 
 5. Under "Value", copy the API key from your IBM quantum profile.
 
