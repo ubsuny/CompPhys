@@ -5,5 +5,5 @@ pandas==1.5.3
 #==1.13.1 torch has a lot of security updates so switchiung to use latest version. Might break things
 torch
 torchvision==0.13.1
-tqdm==4.64.0
+tqdm==4.66.3
 pycaret[full]
