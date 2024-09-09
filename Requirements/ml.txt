@@ -2,7 +2,8 @@ ipywidgets==7.7.1
 matplotlib==3.7.0
 numpy==1.24.2
 pandas==1.5.3
-torch==1.13.1
+#==1.13.1 torch has a lot of security updates so switchiung to use latest version. Might break things
+torch
 torchvision==0.13.1
 tqdm==4.64.0
 pycaret[full]
