@@ -48,3 +48,10 @@ cd CompPhys
    * Windows: ```./runDockerWindows.sh ubsuny/compphys:latest```
 * To run a `jupyter` notebook, when in the container:
    * ```jupyter notebook --ip 0.0.0.0 --no-browser``` 
+
+
+For some reason, Windows often is removing the interactive portion from the script above, so copy and paste this into your PowerShell by hand: 
+
+```
+docker run --rm -it -v ${PWD}:/home/users/compphys/CompPhys -w /home/users/compphys --entrypoint "/bin/bash" -p 8888:8888 ubsuny/compphys:latest
+```
