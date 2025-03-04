@@ -38,7 +38,7 @@ class BVPShoot( BVP ) :
     
     def solve( self ) :
         res = scipy.optimize.root_scalar( self, bracket=[self.uprime-1, self.uprime+1] )
-        self.uvals
+        #self.uvals
         return res
 
 
