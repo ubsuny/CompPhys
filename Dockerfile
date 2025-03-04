@@ -1,49 +1,65 @@
+# Start from the latest Ubuntu image
 FROM ubuntu:latest
 
+# Set environment variables to avoid user prompts during installation
+ENV DEBIAN_FRONTEND=noninteractive
 
-# Create a user that does not have root privileges
-# Set username...
-ARG username=compphys
-# ... with UID 1000
-ENV MY_UID 1000
-# ... and home directory /results (to be mounted on the host system)
-ENV HOME /results
-# Create the user itself
-RUN useradd --create-home --home-dir ${HOME} --uid ${MY_UID} ${username}
+# Install system dependencies and Python 3.10
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    wget \
+    g++ \
+    libtool \
+    rsync \
+    make \
+    x11-apps \
+    tzdata \
+    python3 \
+    python3-dev \
+    python3-numpy \
+    python3-pip \
+    python3-tk \
+    python3-full \
+    swig \
+    ffmpeg \
+    && apt-get clean && rm -rf /var/lib/apt/lists/*
 
-# Set the working directory to /app
-WORKDIR /app
+# Create a directory for the Python virtual environment
+WORKDIR /opt/venv
 
-ADD . /app
+# Upgrade pip and install virtualenv
+RUN python3 -m venv /opt/venv \
+    && /opt/venv/bin/pip install --no-cache-dir \
+    matplotlib \
+    scipy \
+    numpy \
+    scikit-learn \
+    keras \
+    tensorflow \
+    ipykernel \
+    ipython \
+    jupyter \
+    metakernel \
+    zmq \
+    notebook \
+    pytest \
+    nbval \
+    pandas \
+    pylint \
+    pycodestyle \
+    pycodestyle_magic \
+    flake8 \
+    Pillow \
+    openpyxl \
+    ipympl
 
-ENV CPT_PATH=/app/compphys
-ENV PYTHONPATH=/app/compphys_python
-ENV PATH=/app/compphys:$PATH
-RUN ./install_software.sh
+# Create a non-root user and set permissions
+RUN useradd -ms /bin/bash compphys && \
+    chown -R compphys:compphys /opt/venv  
 
-# Set the python path
-RUN ln -s /usr/bin/python3 /usr/bin/python
+USER compphys
 
-#ENV PYTHONPATH /app/lib/python3.10/site-packages/:/app/lib/
+# Set the virtual environment as the default Python environment
+ENV PATH="/opt/venv/bin:$PATH"
 
-
-USER root
-RUN chown -R ${MY_UID} ${HOME}
-# Disallow writing to the /app directory so students do not delete their work accidentally. 
-RUN chmod -R 555 /app
-
-
-# Set the cwd to /results
-WORKDIR ${HOME}
-# Switch to our newly created user
-USER ${username}
-
-
-# Allow incoming connections on port 8888
-EXPOSE 8888
-
-# Sit in "results"
-#WORKDIR ${HOME}
-
-# Run notebook when the container launches
-#CMD ["/bin/bash"]
+# Default command
+CMD ["bash"]
