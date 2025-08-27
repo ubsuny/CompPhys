@@ -62,9 +62,10 @@ ENV PATH="/opt/venv/bin:$PATH"
 RUN useradd -ms /bin/bash compphys && \
     chown -R compphys:compphys /opt/venv  
 
-# entrypoint.sh checks UID:GID of host user and changes docker user to match
+# Entrypoints: entrypoint_wfix.sh adds the user to a specified group to solve permissions problems
 COPY entrypoint.sh /usr/local/bin/entrypoint.sh
-COPY entrypoint_uidfix.sh /usr/local/bin/entrypoint_uidfix.sh
-RUN chmod +x /usr/local/bin/entrypoint.sh && chmod +x /usr/local/bin/entrypoint_uidfix.sh 
+COPY entrypoint_wfix.sh /usr/local/bin/entrypoint_wfix.sh
+COPY .bash_aliases /home/compphys/.bash_aliases
+RUN chmod +x /usr/local/bin/entrypoint.sh && chmod +x /usr/local/bin/entrypoint_wfix.sh && chmod +x /home/compphys/.bash_aliases
 ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
 

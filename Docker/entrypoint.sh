@@ -1,3 +1,10 @@
 #!/bin/bash
 USERNAME=compphys
-exec /usr/sbin/gosu $USERNAME /bin/bash
+# If additional args, pass to shell. Otherwise, default to /bin/bash.
+if [ -z "$@" ]; then
+	ARGS="/bin/bash"
+else
+	ARGS=$@
+fi
+
+exec /usr/sbin/gosu $USERNAME $ARGS
