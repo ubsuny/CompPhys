@@ -26,6 +26,7 @@ else
 fi
 
 DOCKERCMD="docker run \
+    --entrypoint "/usr/local/bin/entrypoint_wfix.sh" \
     --rm \
     -it \
     -e DISPLAY=$DISPLAYHANDLE  \
@@ -33,6 +34,7 @@ DOCKERCMD="docker run \
     -v $LOCALDIR:$REMOTEDIR \
     -w $DOCKERHOME \
     -p 8888:8888 \
-    $1 /bin/bash"
+    $1 \
+    $(id -g $(whoami)) /bin/bash"
 echo $DOCKERCMD 
 exec $DOCKERCMD
