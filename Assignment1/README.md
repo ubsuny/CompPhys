@@ -14,9 +14,9 @@ PHY410: Do problems 1 and 2.
 PHY 505: Do all three problems.
 
 ### Instructions
-1. Accept the assignment from GitHub Classroom: [`https://classroom.github.com/a/cE1SIDZ4`](https://classroom.github.com/a/cE1SIDZ4). GitHub will create a forked repository for you under 
+1. Accept the assignment from GitHub Classroom: [`https://classroom.github.com/a/uwfJMSPr`](https://classroom.github.com/a/uwfJMSPr). GitHub will create a forked repository for you under 
    ```
-   github.com/ubsuny/phy410-assignment1-<your_username>
+   github.com/ubsuny/compphys-assignment1-<your_username>
    ```
 
    - This repository is just a copy of [github.com/ubsuny/CompPhys](github.com/ubsuny/CompPhys), our general repository for the class. 
@@ -24,8 +24,8 @@ PHY 505: Do all three problems.
 2. Clone the repository to your laptop and create a new folder inside for the assignment (note, replace \<your_username\> with your actual GitHub username):
    ```
    cd PHY410 # Or wherever folder you use for this class
-   git clone github.com/ubsuny/phy410-assignment1-<your_username>
-   cd phy410-assignment1-<your_username>/Assignment1
+   git clone github.com/ubsuny/compphys-assignment1-<your_username>
+   cd compphys-assignment1-<your_username>/Assignment1
    # Do the assignment here
    ```
 
@@ -40,7 +40,7 @@ PHY 505: Do all three problems.
       git push origin main
       # Then, go to github.com and make a pull request 
       # from your fork to the main repository, 
-      # ubsuny/compphys-fall2025-phy410-assignment1-CompPhys
+      # ubsuny/compphys-fall2025-compphys-assignment1-CompPhys
       ```
    2. Submit your writeup, including a link to your github classroom area where your code is, on UBLearns. 
 
