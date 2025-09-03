@@ -19,7 +19,7 @@ PHY 505: Do all three problems.
    github.com/ubsuny/compphys-assignment1-<your_username>
    ```
 
-   - This repository is just a copy of [github.com/ubsuny/CompPhys](github.com/ubsuny/CompPhys), our general repository for the class. 
+   - This repository is just a copy of [`github.com/ubsuny/CompPhys`](github.com/ubsuny/CompPhys), our general repository for the class. 
 
 2. Clone the repository to your laptop and create a new folder inside for the assignment (note, replace \<your_username\> with your actual GitHub username):
    ```
