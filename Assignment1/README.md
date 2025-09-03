@@ -62,8 +62,8 @@ Suppose I want to compute the following series:
 
 $$
 \begin{aligned}
-f_0 &= 1 \\
-f_n &= 2*f_{n-1}
+f_0 &= 2 \\
+f_n &= f_{n-1}^2
 \end{aligned}
 $$
 
