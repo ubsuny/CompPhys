@@ -59,6 +59,7 @@ What are the "two's complement" representations for the following numbers? Use N
 
 ### Problem 2
 Suppose I want to compute the following series:
+
 $$
 \begin{aligned}
 f_0 &= 1 \\
