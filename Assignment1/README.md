@@ -29,7 +29,7 @@ PHY 505: Do all three problems.
    # Do the assignment here
    ```
 
-3. Do the assignment. You should put your code under the folder `Assignment1`. Follow the directions closely: each problem will specify exactly what you should name your files. Note: only PHY505 students will actually write any code for assignment 1! Only Problem 3 requires writing code, while Problems 1 and 2 are written-only.
+3. Do the assignment. You should put your code under the folder `Assignment1`. Follow the directions closely: each problem will specify exactly what you should name your files. Note: only PHY505 students will actually write any code for assignment 1, since only problem 3 requires writing code! Problems 1 and 2 are written-only.
 
 4. Once finished, you should submit two things:
    1. Submit your code to GitHub Classroom. To do this, do the usual `git add/commit/push` and PR workflow. PHY410 students can add a dummy file, say `Assignment1/Assignment1.md`, so you can at least test out GitHub Classroom with a real commit.
