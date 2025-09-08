@@ -5,7 +5,7 @@ PHY410: Do problems 1 and 2.
 PHY 505: Do all three problems.  
 
 ### Instructions
-1. Accept the assignment from GitHub Classroom: https://classroom.github.com/blahblahblah. GitHub will create a forked repository for you under github.com/ubsuny/phy410-assignment2-<your_username>. 
+1. Accept the assignment from GitHub Classroom: https://classroom.github.com/a/LmsN_Nej. GitHub will create a forked repository for you under github.com/ubsuny/phy410-assignment2-<your_username>. 
     - Note: replace <your_username> with your actual GitHub username
     - This repository is just a copy of github.com/ubsuny/CompPhys, our general repository for the class. 
 2. Clone the repository to your laptop. Inside, you'll find a folder `Assignment2`. Do all of your work inside this folder.
