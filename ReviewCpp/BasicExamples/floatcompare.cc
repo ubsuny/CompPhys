@@ -6,9 +6,9 @@ int main(void) {
   float f2 = 5.0000001f;
 
   if ( f1 == f2 ) {
-    std::cout << "Nuke!" << std::endl;
+    std::cout << "I’m sorry, Dave. I’m afraid I can’t do that." << std::endl;
   } else {
-    std::cout << "Tweet!" << std::endl;
+    std::cout << "No problem, come in Dave." << std::endl;
   }
 
   return 0;
