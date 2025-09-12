@@ -31,21 +31,21 @@ int main(void){
   auto t1 = high_resolution_clock::now();
   print_val(vec);
   auto t2 = high_resolution_clock::now();
-  std::cout << "Time: " << duration<double, std::milli>(t2 - t1).count() << std::endl;
+  std::cout << "Time: " << duration<double, std::milli>(t2 - t1).count() << " ms" << std::endl;
 
   // Test pass by pointer
   std::cout << "Pass by pointer" << std::endl;
   auto t3 = high_resolution_clock::now();
   print_ptr(&vec);
   auto t4 = high_resolution_clock::now();
-  std::cout << "Time: " << duration<double, std::milli>(t4 - t3).count() << std::endl;
+  std::cout << "Time: " << duration<double, std::milli>(t4 - t3).count() << " ms" << std::endl;
 
   // Test pass by value
   std::cout << "Pass by reference" << std::endl;
   auto t5 = high_resolution_clock::now();
   print_ref(vec);
   auto t6 = high_resolution_clock::now();
-  std::cout << "Time: " << duration<double, std::milli>(t6 - t5).count() << std::endl;
+  std::cout << "Time: " << duration<double, std::milli>(t6 - t5).count() << " ms" << std::endl;
 
   
   return 0;
