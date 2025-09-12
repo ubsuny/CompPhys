@@ -71,7 +71,7 @@ g++ Problem2.cpp -o Problem2.exe
 ### Problem 3
 (25 points, PHY505 students only)
 
-- Start by copying the example at `ReviewCpp/ClassExample/ read_points_example.cc` to `Assignment2/Problem3/Problem3.cpp`, i.e., `cp ReviewCpp/ClassExample/read_points_example.cc Assignment2/Problem3/Problem3.cpp`. 
+- Start by copying the example at `ReviewCpp/ClassExample/read_points_example.cc` to `Assignment2/Problem3/Problem3.cpp`, i.e., `cp ReviewCpp/ClassExample/read_points_example.cc Assignment2/Problem3/Problem3.cpp`. 
 - Create a new class, `Line`, with the class declared in `Assignment2/Problem3/Line.h` and defined in `Assignment2/Problem3/Line.cc`. The class should have:
     - Protected data members `double m_;` and `double b_`, which represent the slope and intercept of the line, respectively; 
 - Copy the class files for `class Point` from `ReviewCpp/ClassExample/Point.h(cc)` into your folder, i.e., `cp ReviewCpp/ClassExample/Point* Assignment2/Problem3/`. So, your `Problem3` file should contain source code files for `Line`, `Point`, and the executable in `Problem3.cpp`.
