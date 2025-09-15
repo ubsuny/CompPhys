@@ -54,7 +54,7 @@ g++ Problem1.cpp -o Problem1.exe
 ### Problem 2
 (25 points)
 1. (15 points) Create a class template file called `LorentzVector.h` that implements a class template of a Lorentz vector (using natural units, $c = 1$) called `template<class T> LorentzVector`. The class `T` is the type of number used for the class member data, for example `float` or `double`. 
-    - Create a method called `mass()` that computes the invariant mass of a Lorentz vector ($m^2=\sqrt{E^2-p_x^-p_y^2-p_z^2}$). 
+    - Create a method called `mass()` that computes the invariant mass of a Lorentz vector ($m^2=\sqrt{E^2-p_x^2-p_y^2-p_z^2}$). 
     - Create a specific class of type `LorentzVector<double>`. 
     - In `Problem2.cpp`, write your `int main()` function. In your `main()` function, create two Lorentz vectors, `v1=(1,0,0,1)` and `v2=(1,0,0,-1)` and print them. 
 2. (10 points) In your `LorentzVector` class, create an addition operator called `operator+` that will sum two four vectors and return the sum. Sum the vectors, `v1` and `v2` from part 1, using the same file `Problem2.cpp`. Print the sum and its invariant mass. 
