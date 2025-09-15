@@ -1,10 +1,10 @@
+make_a_point: Point.cc Point.h make_a_point.cc
+	g++ -o make_a_point Point.cc make_a_point.cc -I.
+
 read_points_example: Point.cc Point.h read_points_example.cc
 	g++ -o read_points_example Point.cc read_points_example.cc -I.
 
-read_points_example_strstream: Point.cc Point.h read_points_example.cc
-	g++ -o read_points_example_strstream Point.cc read_points_example_strstream.cc -I.
-
-all: read_points_example_strstream read_points_example
+all: make_a_point read_points_example
 
 clean:
-	rm -f *.o *~ read_points_example_strstream read_points_example
+	rm -f *.o *~ make_a_point read_points_example
