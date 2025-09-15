@@ -40,7 +40,7 @@ PHY 505: Do all three problems.
 
 ### Problem 1
 
-(25 points) Create a program in the file `Assignment2/Problem1/Problem1.cpp` that:
+(25 points) Create a program in the file `Assignment2/Problem1/Problem1.cc` that:
 
 - Accepts a number as a command line argument, i.e., assuming your executable is named `Problem1.exe`, you will run it like:
 
@@ -57,7 +57,7 @@ The "unit tests," i.e., the commands that will be used to grade the assignment, 
 
 ```
 cd Assignment2/Problem1/
-g++ Problem1.cpp -o Problem1.exe
+g++ Problem1.cc -o Problem1.exe
 ./Problem1.exe 10 # Should return 3628800
 ./Problem1.exe 20 # Should print a warning message and 0
 ./Problem1.exe # Should print a reminder of the expected syntax
@@ -71,13 +71,13 @@ g++ Problem1.cpp -o Problem1.exe
 1. (15 points) Create a class template file called `LorentzVector.h` that implements a class template of a Lorentz vector (using natural units, $c = 1$) called `template<class T> LorentzVector`. The class `T` is the type of number used for the class member data, for example `float` or `double`. 
    - Create a method called `mass()` that computes the invariant mass of a Lorentz vector ($m^2=\sqrt{E^2-p_x^2-p_y^2-p_z^2}$). 
    - Create a specific class of type `LorentzVector<double>`. 
-   - In `Problem2.cpp`, write your `int main()` function. In your `main()` function, create two Lorentz vectors, `v1=(1,0,0,1)` and `v2=(1,0,0,-1)` and print them. 
-2. (10 points) In your `LorentzVector` class, create an addition operator called `operator+` that will sum two four vectors and return the sum. Sum the vectors, `v1` and `v2` from part 1, using the same file `Problem2.cpp`. Print the sum and its invariant mass. 
+   - In `Problem2.cc`, write your `int main()` function. In your `main()` function, create two Lorentz vectors, `v1=(1,0,0,1)` and `v2=(1,0,0,-1)` and print them. 
+2. (10 points) In your `LorentzVector` class, create an addition operator called `operator+` that will sum two four vectors and return the sum. Sum the vectors, `v1` and `v2` from part 1, using the same file `Problem2.cc`. Print the sum and its invariant mass. 
 
 The unit tests for this problem will be:
 ```
 cd Assignment2/Problem2/
-g++ Problem2.cpp -o Problem2.exe
+g++ Problem2.cc -o Problem2.exe
 ./Problem2.exe # This should print v1, v2, and mass(v1+v2). 
 ```
 
@@ -92,7 +92,7 @@ g++ Problem2.cpp -o Problem2.exe
 
 to 
 
-`Assignment2/Problem3/Problem3.cpp`, 
+`Assignment2/Problem3/Problem3.cc`, 
 
 i.e., `cp ReviewCpp/ClassExample/read_points_example.cc Assignment2/Problem3/Problem3.cc`.
 
@@ -124,6 +124,6 @@ i.e., `cp ReviewCpp/ClassExample/read_points_example.cc Assignment2/Problem3/Pro
 The unit tests for the problem will be:
 ```
 cd Assignment2/Problem3
-g++ Line.cc Point.cc Problem3.cpp -o Problem3.exe
+g++ Line.cc Point.cc Problem3.cc -o Problem3.exe
 ./Problem3 lines.txt
 ```
