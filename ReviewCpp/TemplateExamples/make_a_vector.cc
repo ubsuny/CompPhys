@@ -1,5 +1,7 @@
 #include "Vector3.h"
 #include <iostream>
+#include <vector>
+#include <algorithm>
 
 int main() {
 	std::cout << "Making some vectors" << std::endl;
