@@ -53,7 +53,8 @@ RUN python3 -m venv /opt/venv \
     flake8 \
     Pillow \
     openpyxl \
-    ipympl
+    ipympl \
+    numba
 
 # Set the virtual environment as the default Python environment
 ENV PATH="/opt/venv/bin:$PATH"
