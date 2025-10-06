@@ -55,7 +55,9 @@ RUN python3 -m venv /opt/venv \
     openpyxl \
     ipympl \
     qiskit[visualization] \
-    qiskit-ibm-runtime
+    qiskit-ibm-runtime \
+    qiskit-ibm-provider \
+    qiskit-aer==0.17.1 \
     numba
 
 # Set the virtual environment as the default Python environment
