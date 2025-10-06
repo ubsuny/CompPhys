@@ -54,7 +54,9 @@ RUN python3 -m venv /opt/venv \
     Pillow \
     openpyxl \
     ipympl \
-    numba
+    numba \
+    qiskit[visualization] \
+    qiskit-ibm-runtime
 
 # Set the virtual environment as the default Python environment
 ENV PATH="/opt/venv/bin:$PATH"
