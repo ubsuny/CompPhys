@@ -56,7 +56,7 @@ RUN python3 -m venv /opt/venv \
     ipympl \
     qiskit[visualization] \
     qiskit-ibm-runtime
-
+    numba
 
 # Set the virtual environment as the default Python environment
 ENV PATH="/opt/venv/bin:$PATH"
