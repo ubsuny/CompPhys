@@ -71,4 +71,3 @@ COPY entrypoint_wfix.sh /usr/local/bin/entrypoint_wfix.sh
 COPY .bash_aliases /home/compphys/.bash_aliases
 RUN chmod +x /usr/local/bin/entrypoint.sh && chmod +x /usr/local/bin/entrypoint_wfix.sh && chmod +x /home/compphys/.bash_aliases
 ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
-
