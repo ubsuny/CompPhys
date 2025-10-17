@@ -1,6 +1,7 @@
 from cmath import exp, pi
 from math import sin, cos
 import numpy as np
+import numba
 
 def discrete_transform(data):
     """Return Discrete Fourier Transform (DFT) of a complex data vector"""
@@ -20,10 +21,33 @@ def fft(x):
         return discrete_transform(x)
     even = fft(x[0::2])
     odd =  fft(x[1::2])
-    return np.array( [even[k] + exp(-2j*pi*k/N)*odd[k] for k in range(N//2)] + \
-                     [even[k] - exp(-2j*pi*k/N)*odd[k] for k in range(N//2)] )
+    return np.array([even[k] + exp(-2j*pi*k/N)*odd[k] for k in range(N//2)] + \
+                    [even[k] - exp(-2j*pi*k/N)*odd[k] for k in range(N//2)] )
 
+@numba.njit
+def discrete_transform_numba(data):
+    """Return Discrete Fourier Transform (DFT) of a complex data vector"""
+    data = data.astype(np.complex128)
+    N = len(data)
+    transform = np.zeros_like(data, dtype=np.complex128)
+    for k in range(N):
+        for j in range(N):
+            angle = 2 * pi * k * j / N
+            transform[k] += data[j] * np.exp(1j * angle)
+    return transform
 
+@numba.njit
+def fft_numba(data):
+    data = data.astype(np.complex128)# np.array(x, dtype=np.complex128)
+    N = len(data)
+    if N <= 1: return data
+    elif N % 2 == 1:         # N is odd, lemma does not apply
+        print ('N is ' + str(N) + ', fall back to discrete transform')
+        return discrete_transform_numba(data)
+    even = fft_numba(data[0::2])
+    odd =  fft_numba(data[1::2])
+    return np.array([even[k] + exp(-2j*pi*k/N)*odd[k] for k in range(N//2)] + \
+                    [even[k] - exp(-2j*pi*k/N)*odd[k] for k in range(N//2)])
 
 def fft_power(x) :
     N = len(x)
