@@ -51,12 +51,20 @@ def fft_numba(data):
 
 def fft_power(x) :
     N = len(x)
-    if N <=1 : return x
-    power = np.zeros(N//2+1)
-    power[0] = abs(x[0])**2
-    power[1:N//2] = abs(x[1:N//2])**2 + abs(x[N-1:N//2:-1])**2
-    power[N//2] = abs(x[N//2])**2
-    power = power/N
+    if N <=1: 
+        return x
+    power = np.zeros(N//2+1)        
+    if N % 2 == 0:
+        power[0] = abs(x[0])**2
+        power[1:N//2] = abs(x[1:N//2])**2 + abs(x[N-1:N//2:-1])**2
+        power[N//2] = abs(x[N//2])**2
+        power = power/N
+    else:
+        power[0] = abs(x[0])**2
+        power[1:N//2+1] = abs(x[1:N//2+1])**2 + abs(x[N-1:N//2:-1])**2
+        #power[N//2] = abs(x[N//2])**2
+        power = power/N
+
     return power
 
 
