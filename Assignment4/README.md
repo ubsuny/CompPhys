@@ -13,7 +13,7 @@ header-includes:
 - PHY410: Do problems 1 and 2.
 - PHY 505: Do all three problems.
 
-Accept the assignment from github classroom: https://classroom.github.com/a/U98cZCKK. You
+Accept the assignment from github classroom: https://classroom.github.com/a/0p7vIeYc. You
 will then get a link to your own github area.
 You should submit your code through github classroom. Submit your writeup, and a link to your
 github classroom area where your code is, on UBLearns.
