@@ -17,5 +17,6 @@ namespace std {
 %include "scattering.h"
 %template(CrossSection_hard_sphere_potential) CrossSection<hard_sphere_potential>;
 %template(CrossSection_lennard_jones) CrossSection<lennard_jones>;
+%template(CrossSection_inverse_square) CrossSection<inverse_square>;
 
   
