@@ -25,7 +25,8 @@ class lennard_jones  {
 public : 
  lennard_jones( double V0, double r0=1. ) : _V0(V0), _r0(r0) {
   };
-  double operator() ( double r) const { 
+  double operator() (double r) const { 
+    // Note: the "double parentheses" construction defines the operator "()" on the class, just like e.g. `operator +`. 
     return 4 * _V0 * (pow(r/_r0, -12.0) - pow(r/_r0, -6.0));
   }
   double V0() const { return _V0; }
@@ -47,9 +48,9 @@ protected :
 */
 class hard_sphere_potential  {
 public : 
- hard_sphere_potential( double V0, double r0=1.0 ) : _V0(V0), _r0(r0) {
+ hard_sphere_potential(double V0, double r0=1.0) : _V0(V0), _r0(r0) {
   }
-  double operator()( double r) const {
+  double operator()(double r) const {
     if ( r < _r0 ) return _V0;
     else return 0.0;
   }
@@ -60,6 +61,28 @@ protected :
   double _r0; 
 };
 
+/* 
+   ------------------------------------------------
+   inverse_square : class to implement the 1/r potential. 
+   Initialize with :
+   * V0 : potential well depth (positive for repulsive, negative for attractive)
+
+   Then execuate with operator()(r), which will return the Lennard-Jones
+   potential at r. r must be in units of the potential's minimum, so
+   the function is minimized at r = 1.0
+   ------------------------------------------------  
+*/
+class inverse_square  {
+public : 
+ inverse_square(double V0) : _V0(V0) {
+  };
+  double operator() (double r) const { 
+    return _V0 / r;
+  }
+  double V0() const { return _V0; }
+protected : 
+  double _V0;           /// Potential well
+};
 
 /* 
    ------------------------------------------------
@@ -73,7 +96,7 @@ protected :
 
    ------------------------------------------------  
 */
-template< typename VFunctor >
+template<typename VFunctor>
 class f_r_min  {
 public : 
 
@@ -148,8 +171,8 @@ protected :
 template< typename VFunctor>
 class CrossSection  {
 public : 
-  typedef std::pair<double,double>           RThetaType;
-  typedef std::vector< RThetaType >          Trajectory;
+  typedef std::pair<double,double>  RThetaType;
+  typedef std::vector< RThetaType > Trajectory;
 
 
 
