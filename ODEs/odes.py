@@ -1,4 +1,13 @@
 import numpy as np
+from enum import Enum
+
+class ODEMethod(Enum):
+    EXACT = 0,
+    EULER = 1,
+    EULERCROMER = 2,
+    MIDPOINT = 3, 
+    VERLET = 4, 
+    RK4 = 5
 
 def step_euler(tau, state):
     state[0] += tau*state[1]
