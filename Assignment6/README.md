@@ -13,7 +13,7 @@ header-includes:
 - PHY410: Do problems 1–3.
 - PHY 505: Do all four problems.
 
-Accept the assignment from github classroom: https://classroom.github.com/a/TBD. This will create a new repository for you on github, titled something like `compphys-assignment6-username`.
+Accept the assignment from github classroom: https://classroom.github.com/a/KWSqToZc. This will create a new repository for you on github, titled something like `compphys-assignment6-username`.
 You should submit your code through github classroom, and your writeup through UBLearns. If you prefer, you can do your writeup "in-line" in your notebooks (using Markdown cells), convert the notebook to HTML/PDF/etc., and upload the converted notebooks.
 
 
