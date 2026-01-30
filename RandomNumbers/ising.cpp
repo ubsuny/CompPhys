@@ -3,114 +3,124 @@
 
 
 
-Ising::Ising(double iJ, int iL, int iN, double iT, double iH) :
-  rd(), gen(rd()), dis(0,1.),
-  J(iJ), L(iL), Lx(L), Ly(L), N(iN), T(iT), H(iH)
+Ising::Ising(double iJ, int iL, int iN_flips_per_step, double iT, double iH) :
+  rd_(), rng_(rd_()), uniform_(0, 1.),
+  J_(iJ), L_(iL), Lx_(iL), Ly_(iL),  N_spins_(Lx_ * Ly_), 
+  N_flips_per_step_(iN_flips_per_step), T_(iT), H_(iH), thermalized_(false)
 {
-  s.resize(Lx);
-  for (int i = 0; i < Lx; i++){
-    s[i].resize(Ly);
-    for (int j = 0; j < Ly; j++)
-      s[i][j] =  dis(gen) < 0.5 ? +1 : -1;   // hot start
+  spins_.resize(Lx_);
+  for (int i = 0; i < Lx_; i++){
+    spins_[i].resize(Ly_);
+    for (int j = 0; j < Ly_; j++)
+      spins_[i][j] =  uniform_(rng_) < 0.5 ? +1 : -1;   // hot start
   }
-  compute_boltzmann_factors();
-  steps = 0;
+  computeBoltzmannFactors();
+  steps_ = 0;
 
-  reset_averages();
+  resetAverages();
 }
 
+void Ising::thermalize(unsigned int n_therm) {
+  for (unsigned int i = 0; i < n_therm; i++) {
+    oneMCStepPerSpin();
+  }
 
-void Ising::reset_averages(){
-  mAv = 0;
-  m2Av = 0; 
-  eAv = 0;
-  e2Av = 0;
-  mvals.clear();
-  evals.clear(); 
+}
+
+void Ising::resetAverages(){
+  mAv_ = 0;
+  m2Av_ = 0; 
+  eAv_ = 0;
+  e2Av_ = 0;
+  m_vals_.clear();
+  E_vals_.clear(); 
 }
   
-void Ising::compute_boltzmann_factors()
+void Ising::computeBoltzmannFactors()
 {
   for (int i = -8; i <= 8; i += 4) {
-    w[i + 8][0] = exp( - (i * J - 2 * H) / T);
-    w[i + 8][2] = exp( - (i * J + 2 * H) / T);
+    w_[i + 8][0] = exp( - (i * J_ - 2 * H_) / T_);
+    w_[i + 8][2] = exp( - (i * J_ + 2 * H_) / T_);
   }
 }
 
-bool Ising::metropolis_step()
+bool Ising::metropolisStep()
 {
   // choose a random spin
-  int i = int(Lx * dis(gen));
-  int j = int(Ly * dis(gen));
+  int i = int(Lx_ * uniform_(rng_));
+  int j = int(Ly_ * uniform_(rng_));
 
   // find its neighbors using periodic boundary conditions
-  int iPrev = i == 0 ? Lx-1 : i-1;
-  int iNext = i == Lx-1 ? 0 : i+1;
-  int jPrev = j == 0 ? Ly-1 : j-1;
-  int jNext = j == Ly-1 ? 0 : j+1;
+  int iPrev = i == 0 ? Lx_-1 : i-1;
+  int iNext = i == Lx_-1 ? 0 : i+1;
+  int jPrev = j == 0 ? Ly_-1 : j-1;
+  int jNext = j == Ly_-1 ? 0 : j+1;
 
   // find sum of neighbors
-  int sumNeighbors = s[iPrev][j] + s[iNext][j] + s[i][jPrev] + s[i][jNext];
-  int delta_ss = 2*s[i][j]*sumNeighbors;
+  int sum_neighbors = spins_[iPrev][j] + spins_[iNext][j] + spins_[i][jPrev] + spins_[i][jNext];
+  int delta_ss = 2 * spins_[i][j] * sum_neighbors;
 
   // ratio of Boltzmann factors
-  double ratio = w[delta_ss+8][1+s[i][j]];
-  if (dis(gen) < ratio) {
-    s[i][j] = -s[i][j];
+  double ratio = w_[delta_ss+8][1+spins_[i][j]];
+  if (uniform_(rng_) < ratio) {
+    spins_[i][j] = -spins_[i][j];
     return true;
-  } else return false;
+  } else {
+    return false;
+  }
 }
 
-void Ising::one_monte_carlo_step_per_spin ( ) {
+void Ising::oneMCStepPerSpin() {
   int accepts = 0;
-  for (int i = 0; i < N; i++)
-    if (metropolis_step())
+  for (int i = 0; i < N_flips_per_step_; i++) {
+    if (metropolisStep()) {
       ++accepts;
-  acceptanceRatio = accepts/double(N);
-  ++steps;
+    }
+  }
+  acceptance_ratio_ = accepts / double(N_flips_per_step_);
+  ++steps_;
 }
 
-double Ising::magnetizationPerSpin ( ) {
+double Ising::magnetizationPerSpin() {
   int sSum = 0;
-  for (int i = 0; i < Lx; i++)
-    for (int j = 0; j < Ly; j++) {
-      sSum += s[i][j];
+  for (int i = 0; i < Lx_; i++)
+    for (int j = 0; j < Ly_; j++) {
+      sSum += spins_[i][j];
     }
-  return sSum / double(N);
+  return sSum / double(N_spins_);
 }
 
 double Ising::energyPerSpin ( ) {
-  int sSum = 0, ssSum = 0;
-  for (int i = 0; i < Lx; i++)
-    for (int j = 0; j < Ly; j++) {
-      sSum += s[i][j];
-      int iNext = i == Lx-1 ? 0 : i+1;
-      int jNext = j == Ly-1 ? 0 : j+1;
-      ssSum += s[i][j]*(s[iNext][j] + s[i][jNext]);
+  int sSum = 0;
+  int ssSum = 0;
+  for (int i = 0; i < Lx_; i++)
+    for (int j = 0; j < Ly_; j++) {
+      sSum += spins_[i][j];
+      int iNext = i == Lx_-1 ? 0 : i+1;
+      int jNext = j == Ly_-1 ? 0 : j+1;
+      ssSum += spins_[i][j]*(spins_[iNext][j] + spins_[i][jNext]);
     }
-  return -(J*ssSum + H*sSum)/N;
+  return -(J_ * ssSum + H_ * sSum) / N_spins_;
 }
 
-void Ising::run(int MCSteps){
-  int thermSteps = int(0.2 * MCSteps);
-  //std::cout << " Performing " << thermSteps
-  //	    << " steps to thermalize the system ..." << std::flush;
-  for (int s = 0; s < thermSteps; s++)
-    one_monte_carlo_step_per_spin();
-
+void Ising::run(int n_mc_steps){
   //std::cout << " Done\n Performing production steps ..." << std::flush;
-  reset_averages();
-  for (int s = 0; s < MCSteps; s++) {
-    this->one_monte_carlo_step_per_spin();
+  resetAverages();
+  for (int i_step = 0; i_step < n_mc_steps; i_step++) {
+    this->oneMCStepPerSpin();
     double m = this->magnetizationPerSpin();
     double e = this->energyPerSpin();
-    mAv += m; m2Av += m * m;
-    eAv += e; e2Av += e * e;
-    mvals.push_back(m);
-    evals.push_back(e);
+    mAv_ += m; 
+    m2Av_ += m * m;
+    eAv_ += e; 
+    e2Av_ += e * e;
+    m_vals_.push_back(m);
+    E_vals_.push_back(e);
   }
-  mAv /= MCSteps; m2Av /= MCSteps;
-  eAv /= MCSteps; e2Av /= MCSteps;
+  mAv_ /= n_mc_steps; 
+  m2Av_ /= n_mc_steps;
+  eAv_ /= n_mc_steps; 
+  e2Av_ /= n_mc_steps;
   //std::cout << " <m> = " << mAv << " +/- " << sqrt(m2Av - mAv*mAv) << std::endl;
   //std::cout << " <e> = " << eAv << " +/- " << sqrt(e2Av - eAv*eAv) << std::endl;
     
