@@ -10,6 +10,6 @@ To run: see `runDocker.sh` for an example. The default entrypoint (`/usr/local/b
 
 ### Fixing write permissions errors
 If you encounter a write error in your bind-mounted directory, the issue is probably that your user inside the container does not have write access to the folder on the host system. To fix this, we supply a modified script, `runDocker_wfix.sh`, that does runs some permissions management commands behind the scenes. Specifically:
-1. Add group write permissions to your `CompPhys` folder, using `chmod g+w CompPhys`. 
+1. Add group write permissions to your `CompPhys` folder, using `chmod g+w CompPhys`. (You probably need `sudo` for this.)
 2. Launch the docker container with `./runDocker_wfix.sh ubsuny:compphys/latest`. 
 Behind the scenes, the modified script checks the group that owns `CompPhys` on your host system. Inside the container, the script runs `usermod -aG <group_id> <container_username>` to add the container user to that group. 

@@ -6,6 +6,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 
 # Install system dependencies and Python 3.12
 RUN apt-get update && apt-get install -y --no-install-recommends \
+    libhdf5-dev \
     wget \
     less \
     nano \
@@ -24,20 +25,32 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     swig \
     ffmpeg \
     gosu \
+    unzip \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Create a directory for the Python virtual environment
 WORKDIR /opt/venv
 
-# Upgrade pip and install virtualenv
+# Upgrade pip; install virtualenv; install python packages
+# Note: pin protobuf because of tensorflow_dataset bug
 RUN python3 -m venv /opt/venv \
+    && wget -O /tmp/galaxy_datasets.zip https://github.com/ubsuny/galaxy_datasets/archive/refs/tags/v0.1.zip \
+    && unzip /tmp/galaxy_datasets.zip -d /tmp \
+    && /opt/venv/bin/pip install /tmp/galaxy_datasets-0.1 \
+    && rm -rf /tmp/galaxy_datasets.zip /tmp/galaxy_datasets-0.1 \
     && /opt/venv/bin/pip install --no-cache-dir \
     matplotlib \
     scipy \
     numpy \
     scikit-learn \
     keras \
-    tensorflow \
+    protobuf==6.33.0 \
+    tensorflow==2.20.0 \
+    tensorflow_datasets==4.9.9 \
+    importlib_resources \
+    jax \
+    flax \
+    seaborn \
     ipykernel \
     ipython \
     jupyter \
@@ -54,11 +67,16 @@ RUN python3 -m venv /opt/venv \
     Pillow \
     openpyxl \
     ipympl \
-    qiskit[visualization] \
-    qiskit-ibm-runtime \
-    qiskit-ibm-provider \
-    qiskit-aer==0.17.1 \
-    numba
+    numba \
+    hist \
+    tqdm
+
+#/opt/venv/bin/pip install --no-cache-dir -e /galaxy_mnist
+
+#    qiskit[visualization] \
+#    qiskit-ibm-runtime \
+#    qiskit-ibm-provider \
+#    qiskit-aer==0.17.1 \
 
 # Set the virtual environment as the default Python environment
 ENV PATH="/opt/venv/bin:$PATH"
