@@ -1,0 +1,115 @@
+# Uncomment the line below for editor autocompletion/validation (VS Code + "Even Better TOML" ext.)
+# "$schema" = "https://pixi.sh/latest/schema/manifest/schema.json"
+
+[workspace]
+name = "compphys-env"
+version = "0.1.0"
+description = "Shared software environment for Computational Physics"
+channels = ["conda-forge"]
+# Covers student laptops on Linux and Intel/Apple Silicon Mac. Windows users should use WSL.
+platforms = ["linux-64", "osx-64", "osx-arm64"]
+requires-pixi = ">=0.72.0"
+
+# -----------------------------------------------------------------------
+# Conda-forge packages: everything that is a compiled/system-level tool,
+# plus the core scientific stack. This is the direct replacement for the
+# Dockerfile's `apt-get install` line and the bulk of the `pip install` line.
+# -----------------------------------------------------------------------
+[dependencies]
+python = "3.13.*"
+#pip = "*" # probably don't need pip; use `pixi add` instead
+
+# --- C/C++ toolchain (this is the actual fix for "venv can't do C++") ---
+compilers = "*"
+make = "*"
+libtool = "*"
+swig = "*"
+
+# --- scientific / numeric stack ---
+numpy = "2.*"
+scipy = "1.*"
+pandas = "*"
+matplotlib = "3.*"
+scikit-learn = "*"
+seaborn = "*"
+numba = "*"
+pillow = "*"
+openpyxl = "*"
+tqdm = "*"
+importlib_resources = "*"
+
+# --- Jupyter stack ---
+jupyter = "*"
+notebook = "*"
+ipykernel = "*"
+ipython = "*"
+ipympl = "*"
+tk = "*"          # tkinter support for matplotlib's Tk backend (was python3.12-tk)
+
+# --- testing / linting (mirrors your pip install list) ---
+pytest = "*"
+nbval = "*"
+pylint = "*"
+pycodestyle = "*"
+flake8 = "*"
+
+# --- libraries the C++ side needs (was libhdf5-dev) ---
+hdf5 = "*"
+h5py = "*"        # Python bindings for hdf5 -- add/remove as needed
+
+# --- misc CLI tools used in the Dockerfile ---
+wget = "*"
+unzip = "*"
+ffmpeg = "*"
+tzdata = "*"
+
+# Notes on packages dropped from the original Dockerfile:
+#   x11-apps -> was only needed to test X11 forwarding out of a container; irrelevant on a native install.
+#   gosu     -> was only needed to fix container file-permission issues; irrelevant outside Docker.
+
+# -----------------------------------------------------------------------
+# Linux/macOS-only convenience CLI tools. These don't have reliable
+# conda-forge Windows builds, but nothing in the course depends on them --
+# they're just terminal quality-of-life. Windows students simply won't get
+# these three; everything else in the manifest is fully cross-platform.
+# -----------------------------------------------------------------------
+[target.unix.dependencies]
+less = "*"
+nano = "*"
+rsync = "*"
+
+# -----------------------------------------------------------------------
+# PyPI packages: the ML stack, pinned to match your Dockerfile exactly,
+# plus your custom galaxy_datasets package. These are kept on PyPI rather
+# than conda-forge because (a) TensorFlow's own docs recommend installing
+# via pip rather than conda, and (b) it guarantees you get the exact pins
+# you already validated last year.
+# -----------------------------------------------------------------------
+[pypi-dependencies]
+hist = "*"
+metakernel = "*"
+pycodestyle_magic = "*"
+
+# Machine learning stuff: 2nd semester only
+#[feature.ml.pypi-dependencies]
+#protobuf = "==6.33.0"
+#pyzmq = "*"
+#keras = "*"
+#tensorflow = "==2.20.0"
+#tensorflow-datasets = "==4.9.9"
+#jax = "*"
+#flax = "*"
+#galaxy_datasets = { git = "https://github.com/ubsuny/galaxy_datasets", tag = "v0.1" } # Not needed until 2nd semester
+
+# -----------------------------------------------------------------------
+# Convenience shortcuts: `pixi run lab`, `pixi run test`, etc.
+# -----------------------------------------------------------------------
+[tasks]
+lab = "jupyter lab"
+notebook = "jupyter notebook"
+test = "pytest"
+
+# Define separate environment for ML, because optional ML packages are large
+[environments]
+default = []
+#ml = ["ml"]
