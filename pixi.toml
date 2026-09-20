@@ -63,6 +63,7 @@ unzip = "*"
 ffmpeg = "*"
 tzdata = "*"
 pybind11 = ">=3.1.0,<4"
+cppyy = ">=3.5.0,<4"
 
 # Notes on packages dropped from the original Dockerfile:
 #   x11-apps -> was only needed to test X11 forwarding out of a container; irrelevant on a native install.
