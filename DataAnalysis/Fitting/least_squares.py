@@ -9,11 +9,12 @@ def least_squares(x, y):
        y : y values
 
     Returns :
-       a : intercept
-       b : slope
-       sigma : total uncertainty (sqrt(variance/(n-2)))
+       a       : intercept
+       b       : slope
+       sigma   : total uncertainty (sqrt(variance/(n-2)))
        sigma_a : uncertainty on a
        sigma_b : uncertainty on b
+       cov     : covariance of a and b
 
     """
 
@@ -42,9 +43,13 @@ def least_squares(x, y):
           sigma = np.sqrt(np.sum((y - (a+b*x))**2 ) / (n-2))
           sigma_a = np.sqrt(sigma**2 * s_xx / denom)
           sigma_b = np.sqrt(sigma**2 * n / denom)
+
+          Delta = n * s_xx - (s_x * s_x)
+          cov_ab = -(sigma**2 * s_x / Delta)
     else :
           sigma = 0.
           sigma_a = 0.
           sigma_b = 0.
+          cov_ab = 0.
 
-    return [a, b, sigma, sigma_a, sigma_b]    
+    return a, b, sigma, sigma_a, sigma_b, cov_ab
