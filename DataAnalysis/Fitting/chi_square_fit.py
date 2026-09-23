@@ -26,4 +26,5 @@ def chi_square_fit(x, y, err):
     sigma_a = np.sqrt(sigma_a2)
     sigma_b = np.sqrt(sigma_b2)
     chi_square = np.sum(((y - a - b*x) / err)**2)
-    return(a, b, sigma_a, sigma_b, chi_square)
+    cov_ab = -S_x / (S * S_tt)
+    return a, b, sigma_a, sigma_b, cov_ab, chi_square
