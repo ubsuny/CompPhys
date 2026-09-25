@@ -18,3 +18,12 @@ int64_t sum_int_numpy(py::array_t<int64_t, py::array::c_style | py::array::force
     }
     return sum;
 }
+
+int sum_int_int(std::vector<int> const & vec)
+{
+  int sum = 0;
+  for ( auto i : vec ) {
+    sum += i;
+  }
+  return sum;
+}

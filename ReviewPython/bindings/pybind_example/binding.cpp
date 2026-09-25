@@ -15,5 +15,10 @@ PYBIND11_MODULE(example_pybind11, m) {
 
   m.def("sum_int_numpy", &sum_int_numpy, "Sum a numpy array of ints");
 
+  m.def("sum_int_int", &sum_int_int, "Sum a vector of ints",
+        py::arg("vec"));
+
   py::bind_vector<std::vector<long>>(m, "VectorLong"); // Make vector<int> available in python, as VectorInt
+
+  py::bind_vector<std::vector<int>>(m, "VectorInt"); // Make vector<int> available in python, as VectorInt
 }
