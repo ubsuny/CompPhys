@@ -1,6 +1,18 @@
 import numpy as np
 
-def derivative_fivepoint( f, x, h) :
+def derivative_forward(f, x, h): 
+    return (f(x+h) - f(x)) / h
+
+            
+def derivative_backward(f, x, h): 
+    return (f(x) - f(x-h)) / h
+
+            
+def derivative_symmetric(f, x, h): 
+    return (f(x+h) - f(x-h)) / (2*h)
+
+            
+def derivative_fivepoint(f, x, h) :
     ''' f     : name of function to be differentiated
         x     : the point at which df/dx is required
         h     : step size
@@ -9,8 +21,7 @@ def derivative_fivepoint( f, x, h) :
     return dfdx
     
     
-    
-def derivative_ridders(f,x,h,n=10,verbose=False):
+def derivative_ridders(f, x, h, n=10, verbose=False):
     ''' Purpose : to compute the derivative of f using Ridder's method.
         Algorithm : Uses polynomial extrapolation to compute the derivative.
                     Stores the "Neville's algorithm" tableaux in a table.
