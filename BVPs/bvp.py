@@ -49,7 +49,7 @@ class BVPRelax( BVP ) :
         self.xvals = np.linspace( xbounds[0], xbounds[1], N+1)
         self.uvals = np.zeros(N+1)
         self.uOld = np.zeros(N+1)
-        self.dx = (xbounds[1]-xbounds[0])/(N+1)
+        self.dx = (xbounds[1]-xbounds[0]) / N
         self.init()
 
 
